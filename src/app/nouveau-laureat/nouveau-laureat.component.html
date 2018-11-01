@@ -1,0 +1,41 @@
+<div class="container spacer" >
+  <div class="card">
+    <div class="card-header">Saisie d'un Laureat</div>
+    <div class="card-body">
+
+      <form #f="ngForm" (ngSubmit)="onSaveLaureat(f.value)">
+        <div class="form-group">
+          <label >Name :</label>
+          <input class="form-control" type="text" ngModel name="name" required />
+        </div>
+        <div class="form-group">
+          <label >Prenom :</label>
+          <input class="form-control" type="text" ngModel name="prenom" required />
+        </div>
+        <div class="form-group">
+          <label >Email :</label>
+          <input class="form-control" type="email" ngModel name="email" required email />
+        </div>
+        <div class="form-group">
+          <label >Tél :</label>
+          <input class="form-control" type="text" ngModel name="tel" required />
+        </div>
+        <div class="form-group">
+          <label >Filière :</label>
+          <input class="form-control" type="text" ngModel name="filiere" required />
+        </div>
+        <div class="form-group">
+          <label >Organisme :</label>
+          <input class="form-control" type="text" ngModel name="organisme" required />
+        </div>
+        <div class="form-group">
+          <label >Genre</label>
+          <input class="form-control" type="text" ngModel name="genre" required />
+        </div>
+        <button [disabled]="!f.valid" type="submit" class="btn btn-primary" >Save</button>
+      </form>
+
+    </div>
+  </div>
+
+</div>
