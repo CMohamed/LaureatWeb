@@ -2,30 +2,40 @@
   <div class="card border-primary">
     <div class="card-header">List des Laureats :</div>
     <div class="card-body">
+
       <div class="form-group">
         <label>Mot Clé : </label>
         <input type="text" [(ngModel)]="motCle" />
         <button class="btn btn-primary" (click)="chercher()" >Chercher</button>
       </div>
+
       <table class="table table-striped" >
         <tr>
-          <th>ID</th><th>Name</th><th>Prenom</th><th>Email</th><th>Filiere</th><th>Genre</th><th>Organisme</th><th>Date Inscription</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Prenom</th>
+          <th>Email</th>
+          <th>Filiere</th>
+          <th>Genre</th>
+          <th>Organisme</th>
+          <th>Date Inscription</th>
         </tr>
-        <tr *ngFor="let l of pageLaureats?.content" >
-          <td>{{l.id}}</td>
-          <td>{{l.name}}</td>
-          <td>{{l.prenom}}</td>
-          <td>{{l.email}}</td>
-          <td>{{l.filiere}}</td>
-          <td>{{l.genre}}</td>
-          <td>{{l.organisme}}</td>
-          <td>{{l.dateInscription}}</td>
+        <tr *ngFor="let l of pageLaureats" >
+          <td>{{l?.id}}</td>
+          <td>{{l?.nom}}</td>
+          <td>{{l?.prenom}}</td>
+          <td>{{l?.email}}</td>
+          <td>{{l?.filiere}}</td>
+          <td>{{l?.genre}}</td>
+          <td>{{l?.organisme}}</td>
+          <td>{{l?.dateInscription}}</td>
           <td>
-            <a (click)="onEditLaureat(l.id)" classe="clickable" >Edit</a>
+            <a (click)="onEditLaureat(l?.id)" classe="clickable" >Edit</a>
           </td>
 
         </tr>
       </table>
+
       <div class="container">
         <ul class="nav nav-pills">
           <li class="nav-item active"  *ngFor="let p of pages; let i=index " >
@@ -33,6 +43,7 @@
           </li>
         </ul>
       </div>
+
     </div>
   </div>
 </div>
