@@ -34,7 +34,7 @@ export class LaureatsServices {
 
 
 
-    requete = requete + "%20order%20by%20utilisateur.id%20limit%20" + size + "%20offset%20" + Number(size*page + size);
+    requete = requete + "%20order%20by%20utilisateur.id%20limit%20" + size + "%20offset%20" + Number(size*page);
 
     console.log(requete);
 

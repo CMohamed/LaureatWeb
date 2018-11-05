@@ -47,7 +47,7 @@ export class LaureatsComponent implements OnInit {
 
 
 
-    let requeteFiltre = "http://192.168.43.233:9090/requestAny/select%20nom,prenom,photo,organisme.long,organisme.lat,filiere,promotion,organisme.secteur,genre,organisme.province,nomorganisme%20from%20utilisateur,organisme%20";
+    let requeteFiltre = "http://localhost:9090/requestAny/select%20nom,email,prenom,photo,organisme.long,organisme.lat,filiere,promotion,organisme.secteur,genre,organisme.province,nomorganisme%20from%20utilisateur,organisme%20";
     let clauseWhere = "";
 
     console.log(this.secteur == "");
@@ -112,10 +112,11 @@ export class LaureatsComponent implements OnInit {
 
         this.pageLaureats = (data as any).features;
         console.log(this.pages);
+        console.log((data as any).features);
 
-        console.log(requeteFiltre.replace("select%20nom,prenom,photo,organisme.long,organisme.lat,filiere,promotion,organisme.secteur,genre,organisme.province,nomorganisme","select%20count(*)%20"));
+        console.log(requeteFiltre.replace("select%20nom,email,prenom,photo,organisme.long,organisme.lat,filiere,promotion,organisme.secteur,genre,organisme.province,nomorganisme","select%20count(*)%20"));
 
-        this.httpClient.get(requeteFiltre.replace("select%20nom,prenom,photo,organisme.long,organisme.lat,filiere,promotion,organisme.secteur,genre,organisme.province,nomorganisme","select%20count(*)%20"))
+        this.httpClient.get(requeteFiltre.replace("select%20nom,email,prenom,photo,organisme.long,organisme.lat,filiere,promotion,organisme.secteur,genre,organisme.province,nomorganisme","select%20count(*)%20"))
           .subscribe(data2 => {
 
 
