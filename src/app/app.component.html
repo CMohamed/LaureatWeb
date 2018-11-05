@@ -1,9 +1,17 @@
-<div class="container spacer">
+<mat-toolbar color="primary">
+  <span class="title">EHTP Annuaire</span>
 
-  <button routerLink="/about" class="btn btn-primary" >About</button>
-  <button routerLink="/laureats" class="btn btn-primary" >Laureats</button>
-  <button routerLink="/new-laureat" class="btn btn-primary" >Nouveau Laureat</button>
-</div>
+  <button mat-button routerLink="/about">About</button>
+  <button mat-button routerLink="/laureats">Laureats</button>
+  <button mat-button routerLink="/new-laureat">Nouveau Laureat</button>
+
+  <span class="spacer">         </span>
+
+  <button *ngIf="!isAuthentified" mat-button>Login</button>
+  <button *ngIf="isAuthentified" mat-button >Logout</button>
+</mat-toolbar>
+
+
 
 <router-outlet>
 

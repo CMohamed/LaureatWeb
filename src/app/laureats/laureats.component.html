@@ -1,49 +1,35 @@
-<div class="container spacer">
-  <div class="card border-primary">
-    <div class="card-header">List des Laureats :</div>
-    <div class="card-body">
+<table mat-table
+       [dataSource]="dataSource" multiTemplateDataRows
+       class="mat-elevation-z8">
+  <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+  </ng-container>
 
-      <div class="form-group">
-        <label>Mot Clé : </label>
-        <input type="text" [(ngModel)]="motCle" />
-        <button class="btn btn-primary" (click)="chercher()" >Chercher</button>
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+      <div class="example-element-detail"
+           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <div class="example-element-diagram">
+          <div class="example-element-position"> {{element.position}} </div>
+          <div class="example-element-symbol"> {{element.symbol}} </div>
+          <div class="example-element-name"> {{element.name}} </div>
+          <div class="example-element-weight"> {{element.weight}} </div>
+        </div>
+        <div class="example-element-description">
+          {{element.description}}
+          <span class="example-element-description-attribution"> -- Wikipedia </span>
+        </div>
       </div>
+    </td>
+  </ng-container>
 
-      <table class="table table-striped" >
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Prenom</th>
-          <th>Email</th>
-          <th>Filiere</th>
-          <th>Genre</th>
-          <th>Organisme</th>
-          <th>Date Inscription</th>
-        </tr>
-        <tr *ngFor="let l of pageLaureats" >
-          <td>{{l?.id}}</td>
-          <td>{{l?.nom}}</td>
-          <td>{{l?.prenom}}</td>
-          <td>{{l?.email}}</td>
-          <td>{{l?.filiere}}</td>
-          <td>{{l?.genre}}</td>
-          <td>{{l?.organisme}}</td>
-          <td>{{l?.dateInscription}}</td>
-          <td>
-            <a (click)="onEditLaureat(l?.id)" classe="clickable" >Edit</a>
-          </td>
-
-        </tr>
-      </table>
-
-      <div class="container">
-        <ul class="nav nav-pills">
-          <li class="nav-item active"  *ngFor="let p of pages; let i=index " >
-            <a [ngClass] = "{'nav-link clickable':true, 'active': i==currentPage}" (click)="goToPage(i)">{{i}}</a>
-          </li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</div>
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>
