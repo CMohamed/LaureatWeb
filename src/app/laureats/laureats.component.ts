@@ -4,6 +4,7 @@ import {LaureatsServices} from 'src/services/laureats.services';
 import {Router} from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {FormControl} from '@angular/forms';
+import {Laureat} from '../../Model/model.laureat';
 
 @Component({
   selector: 'app-laureats',
@@ -27,9 +28,10 @@ export class LaureatsComponent implements OnInit {
   currentPage: number = 0;
   pages: Array<number>;
   //displayedColumns: string[] = ['nom', 'prenom', 'email', 'filiere', 'genre', 'organisme', 'dateInscription'];
+  columnsToDisplay: string[] = ['nom', 'prenom', 'email', 'filiere', 'genre', 'organisme', 'dateInscription'];
   dataSource = ELEMENT_DATA;
   Organismes = SelectData;
-  columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
+  //columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
   expandedElement: PeriodicElement;
 
   Filieres = ['GI','SIG','GC','GE','IVE','IHE','Meteo'];
@@ -195,6 +197,12 @@ const SelectData : Organisme[] = [
   {
     name: 'ABH-OuadNoun',
     secteur: 'Public'
+  },{
+    name: 'topomap',
+    secteur: 'Private'
+  },{
+    name: 'uhuh',
+    secteur: 'Private'
   }
 ];
 
