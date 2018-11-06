@@ -17,6 +17,7 @@ export class NewLaureatComponent implements OnInit {
   }
 
   saveLaureat() {
+    /*
     this.laureat.dateInscription = new Date(); // ana haaarbe
     this.laureatsService.saveLaureats(this.laureat)
       .subscribe((data: any) => {
@@ -26,6 +27,7 @@ export class NewLaureatComponent implements OnInit {
       },err => {
         console.log(err);
       });
+      */
   }
 
 }

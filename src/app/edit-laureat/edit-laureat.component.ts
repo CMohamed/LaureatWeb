@@ -25,15 +25,18 @@ export class EditLaureatComponent implements OnInit {
   }
 
   ngOnInit() {
+    /*
     this.laureatsService.getLaureat(this.idLaureat)
       .subscribe((data: any)  => {
         this.laureat = data;
       },err => {
         console.log(err);
       });
+      */
   }
 
   updateLaureat() {
+    /*
     this.laureatsService.updateLaureat(this.laureat)
       .subscribe((data) => {
         alert('Mise à jour effectué !');
@@ -41,6 +44,7 @@ export class EditLaureatComponent implements OnInit {
       },err => {
         console.log(err);
       });
+      */
   }
 
 }
