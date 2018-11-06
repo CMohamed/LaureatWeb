@@ -55,6 +55,7 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { MapComponent } from './map/map.component';
 
 
 const appRoutes: Routes = [
@@ -81,7 +82,8 @@ const appRoutes: Routes = [
     LaureatsComponent,
     NewLaureatComponent,
     NouveauLaureatComponent,
-    EditLaureatComponent
+    EditLaureatComponent,
+    MapComponent
   ],
   imports: [
     BrowserAnimationsModule,
