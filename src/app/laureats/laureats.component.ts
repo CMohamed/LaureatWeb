@@ -30,12 +30,12 @@ export class LaureatsComponent implements OnInit {
   pages: Array<number>;
   //displayedColumns: string[] = ['nom', 'prenom', 'email', 'filiere', 'genre', 'organisme', 'dateInscription'];
   columnsToDisplay: string[] = ['nom', 'prenom', 'email', 'filiere', 'genre', 'organisme', 'dateInscription'];
-  //dataSource = ELEMENT_DATA;
+
   Organismes = SelectData;
-  //columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
+
   expandedElement: PeriodicElement;
 
-  Filieres = ['GI','SIG','GC','GE','IVE','IHE','Meteo'];
+  Filieres = ['GI','sig','GC','GE','IVE','IHE','Meteo'];
   toppings = new FormControl();
 
 
@@ -43,12 +43,12 @@ export class LaureatsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  public filiere = "";
-  public promotion = "";
-  public secteur = "";
-  public genre = "";
-  public province = "";
-  public organisme = "";
+  filiere :string;
+  promotion :string;
+  secteur :string;
+  genre :string;
+  province :string;
+  organisme :string;
 
   //pageLaureats: {content:[]};
 
@@ -56,16 +56,12 @@ export class LaureatsComponent implements OnInit {
               public laureatservice: LaureatsServices,
               public router: Router) {
 
-
-
-
   }
-
 
 
   ngOnInit() {
+    this.genre=""; this.filiere=""; this.province=""; this.organisme=""; this.secteur=""; this.promotion="";
   }
-
 
   doSearch() {
 
@@ -75,11 +71,12 @@ export class LaureatsComponent implements OnInit {
     console.log(this.secteur == "");
 
     if(this.filiere != ""){
-
       clauseWhere = clauseWhere + "filiere%20='" + this.filiere + "'%20and%20";
-
     }
 
+    console.log('---------- filiere ---------------');
+    console.log(this.filiere);
+    console.log('--------------------------');
     if(this.promotion != ""){
 
       clauseWhere = clauseWhere + "promotion%20='" + this.promotion + "'%20and%20";
@@ -97,6 +94,9 @@ export class LaureatsComponent implements OnInit {
       clauseWhere = clauseWhere + "genre%20='" + this.genre + "'%20and%20";
 
     }
+    console.log('---------- genre ---------------');
+    console.log(this.genre);
+    console.log('--------------------------');
 
 
     if(this.province != ""){
@@ -168,7 +168,6 @@ export class LaureatsComponent implements OnInit {
       */
 
   }
-
 
   chercher() {
     this.doSearch();
