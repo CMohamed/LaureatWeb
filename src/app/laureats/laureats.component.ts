@@ -24,6 +24,7 @@ export class LaureatsComponent implements OnInit {
   pages: Array<number>;
   //displayedColumns: string[] = ['nom', 'prenom', 'email', 'filiere', 'genre', 'organisme', 'dateInscription'];
   dataSource = ELEMENT_DATA;
+  Organismes = SelectData;
   columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
   expandedElement: PeriodicElement;
 
@@ -49,9 +50,6 @@ export class LaureatsComponent implements OnInit {
 
   ngOnInit() {
   }
-
-
-
 
 
 
@@ -179,6 +177,25 @@ export class LaureatsComponent implements OnInit {
 
 
 }
+
+export class Organisme {
+  name: string;
+  secteur: string;
+}
+
+const SelectData : Organisme[] = [
+  {
+    name: 'Reference Spatiale',
+    secteur: 'Private'
+  },{
+    name: 'OCP',
+    secteur: 'Private'
+  },
+  {
+    name: 'ABH-OuadNoun',
+    secteur: 'Public'
+  }
+];
 
 export interface PeriodicElement {
   name: string;
