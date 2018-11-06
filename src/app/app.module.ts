@@ -7,7 +7,7 @@ import { LaureatsComponent } from './laureats/laureats.component';
 import {RouterModule, Routes} from '@angular/router';
 import {AboutComponent} from './about/about.component';
 import {LaureatsServices} from 'src/services/laureats.services'
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NewLaureatComponent } from './new-laureat/new-laureat.component';
 import { NouveauLaureatComponent } from './nouveau-laureat/nouveau-laureat.component';
 import { EditLaureatComponent } from './edit-laureat/edit-laureat.component';
@@ -127,7 +127,8 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    ScrollingModule
+    ScrollingModule,
+    ReactiveFormsModule
   ],
   providers: [LaureatsServices],
   bootstrap: [AppComponent],

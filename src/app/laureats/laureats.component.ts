@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {LaureatsServices} from 'src/services/laureats.services';
 import {Router} from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-laureats',
@@ -16,6 +17,9 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     ]),
   ]
 })
+
+
+
 export class LaureatsComponent implements OnInit {
   pageLaureats: any;
   motCle: string = "";
@@ -27,6 +31,9 @@ export class LaureatsComponent implements OnInit {
   Organismes = SelectData;
   columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
   expandedElement: PeriodicElement;
+
+  Filieres = ['GI','SIG','GC','GE','IVE','IHE','Meteo'];
+  toppings = new FormControl();
 
   public filiere = "";
   public promotion = "";
@@ -52,10 +59,7 @@ export class LaureatsComponent implements OnInit {
   }
 
 
-
   doSearch() {
-
-
 
     let requeteFiltre = "http://localhost:9090/requestAny/select%20nom,email,prenom,photo,organisme.long,organisme.lat,filiere,promotion,organisme.secteur,genre,organisme.province,nomorganisme%20from%20utilisateur,organisme%20";
     let clauseWhere = "";
@@ -65,7 +69,6 @@ export class LaureatsComponent implements OnInit {
     if(this.filiere != ""){
 
       clauseWhere = clauseWhere + "filiere%20='" + this.filiere + "'%20and%20";
-
 
     }
 
@@ -112,8 +115,6 @@ export class LaureatsComponent implements OnInit {
       requeteFiltre = requeteFiltre + "where%20utilisateur.reforganisme=organisme.id%20";
 
     }
-
-
 
     console.log(requeteFiltre);
 
