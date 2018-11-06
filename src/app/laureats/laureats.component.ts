@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {LaureatsServices} from 'src/services/laureats.services';
 import {Router} from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {FormControl} from '@angular/forms';
 import {Laureat} from '../../Model/model.laureat';
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-laureats',
@@ -24,18 +25,22 @@ import {Laureat} from '../../Model/model.laureat';
 export class LaureatsComponent implements OnInit {
   pageLaureats: any;
   motCle: string = "";
-  size: number = 2;
+  size: number = 4;
   currentPage: number = 0;
   pages: Array<number>;
   //displayedColumns: string[] = ['nom', 'prenom', 'email', 'filiere', 'genre', 'organisme', 'dateInscription'];
   columnsToDisplay: string[] = ['nom', 'prenom', 'email', 'filiere', 'genre', 'organisme', 'dateInscription'];
-  dataSource = ELEMENT_DATA;
+  //dataSource = ELEMENT_DATA;
   Organismes = SelectData;
   //columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
   expandedElement: PeriodicElement;
 
   Filieres = ['GI','SIG','GC','GE','IVE','IHE','Meteo'];
   toppings = new FormControl();
+
+
+  dataSource: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   public filiere = "";
   public promotion = "";
@@ -166,6 +171,8 @@ export class LaureatsComponent implements OnInit {
 
   chercher() {
     this.doSearch();
+    this.dataSource = new MatTableDataSource<Laureat>(this.pageLaureats);
+    this.dataSource.paginator = this.paginator;
   }
 
   goToPage(i: number) {
