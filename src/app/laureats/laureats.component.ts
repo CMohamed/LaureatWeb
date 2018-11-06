@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {FormControl} from '@angular/forms';
 import {Laureat} from '../../Model/model.laureat';
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-laureats',
@@ -41,6 +41,7 @@ export class LaureatsComponent implements OnInit {
 
   dataSource: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   public filiere = "";
   public promotion = "";
@@ -173,6 +174,7 @@ export class LaureatsComponent implements OnInit {
     this.doSearch();
     this.dataSource = new MatTableDataSource<Laureat>(this.pageLaureats);
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   goToPage(i: number) {
