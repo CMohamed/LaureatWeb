@@ -7,6 +7,7 @@ import {FormControl} from '@angular/forms';
 import {Laureat} from '../../Model/model.laureat';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Subscription} from 'rxjs';
+import {OrganismesServices} from '../../services/organismes.service';
 
 @Component({
   selector: 'app-laureats',
@@ -27,6 +28,8 @@ export class LaureatsComponent implements OnInit {
 
   public laureatsListSubscription : Subscription;
   public laureatsList : any[];
+  public organismesListSubscription : Subscription;
+  public organismesList : any[];
   motCle: string = "";
   size: number = 4;
   quota = 2; //c'est le nombre maximal d'enregistrements qu'on peut récupérer à partir d'une requet http
@@ -35,7 +38,6 @@ export class LaureatsComponent implements OnInit {
   //displayedColumns: string[] = ['nom', 'prenom', 'email', 'filiere', 'genre', 'organisme', 'dateInscription'];
   columnsToDisplay: string[] = ['nom', 'prenom', 'email', 'filiere', 'genre', 'organisme', 'dateInscription'];
 
-  Organismes = SelectData;
 
   expandedElement: PeriodicElement;
 
@@ -57,8 +59,19 @@ export class LaureatsComponent implements OnInit {
   //pageLaureats: {content:[]};
 
   constructor(public  httpClient: HttpClient,
+              public organismeService: OrganismesServices,
               public laureatservice: LaureatsServices,
               public router: Router) {
+
+    this.organismesListSubscription = this.organismeService.organismeList$.subscribe(
+      (organismes) => {
+
+        this.organismesList = organismes;
+
+
+      }
+    );
+
 
     this.laureatsListSubscription = this.laureatservice.laureatsList$.subscribe(
       (laureatsImported: any[]) => {
@@ -118,25 +131,6 @@ export class Organisme {
   secteur: string;
 }
 
-const SelectData : Organisme[] = [
-  {
-    name: 'Reference Spatiale',
-    secteur: 'Private'
-  },{
-    name: 'OCP',
-    secteur: 'Private'
-  },
-  {
-    name: 'ABH-OuadNoun',
-    secteur: 'Public'
-  },{
-    name: 'topomap',
-    secteur: 'Private'
-  },{
-    name: 'uhuh',
-    secteur: 'Private'
-  }
-];
 
 export interface PeriodicElement {
   name: string;

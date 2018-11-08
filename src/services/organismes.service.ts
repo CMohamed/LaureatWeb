@@ -10,7 +10,7 @@ import {Subject} from "rxjs";
   and Angular DI.
 */
 @Injectable()
-export class OrganismesProvider {
+export class OrganismesServices {
 
   private organismeList: any[] = [];
   organismeList$ = new Subject<any[]>();

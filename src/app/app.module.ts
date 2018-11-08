@@ -18,6 +18,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -56,6 +57,7 @@ import {
   MatTreeModule,
 } from '@angular/material';
 import { MapComponent } from './map/map.component';
+import {OrganismesServices} from '../services/organismes.service';
 
 
 const appRoutes: Routes = [
@@ -132,7 +134,9 @@ const appRoutes: Routes = [
     ScrollingModule,
     ReactiveFormsModule
   ],
-  providers: [LaureatsServices],
+  providers: [LaureatsServices,
+              OrganismesServices
+  ],
   bootstrap: [AppComponent],
   exports: [
     CdkTableModule,
