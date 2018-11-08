@@ -28,7 +28,17 @@ export class AvancementServices {
 
   getAvancements(){
 
-    this.httpClient.get("select")
+    this.httpClient.get("http://localhost:9090/requestAny/select%20*%20from" +
+      "%20utilisateur,avancement%20" +
+      "where%20utilisateur.id%20=%20avancement.refutilisateur%20" +
+      "and%20datetraitement%20is%20not%20null%20" +
+      "order%20by%20datetraitement%20desc").subscribe( data => {
+
+        this.avancementsList = (data as any).features;
+        this.emitList();
+
+      }
+    );
 
   }
 

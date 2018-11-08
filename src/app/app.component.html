@@ -4,12 +4,12 @@
   <button mat-button routerLink="/about">About</button>
   <button mat-button routerLink="/laureats">Laureats</button>
   <button mat-button routerLink="/new-laureat">Nouveau Laureat</button>
-  <button mat-button routerLink="" *ngIf="!isAutentified">Administration</button>
+  <button mat-button routerLink="" *ngIf="currentUser">Administration</button>
 
-  <span class="spacer">         </span>
+  <span class="spacer"></span>
 
-  <button *ngIf="!isAuthentified" mat-button routerLink="/app-login">Login</button>
-  <button *ngIf="isAuthentified" mat-button >Logout</button>
+  <button *ngIf="!currentUser" mat-button routerLink="/app-login">Login</button>
+  <button *ngIf="currentUser" mat-button >Logout</button>
 </mat-toolbar>
 
 
