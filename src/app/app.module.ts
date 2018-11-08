@@ -58,6 +58,7 @@ import {
 } from '@angular/material';
 import { MapComponent } from './map/map.component';
 import {OrganismesServices} from '../services/organismes.service';
+import { LoginComponent } from './login/login.component';
 
 
 const appRoutes: Routes = [
@@ -65,6 +66,7 @@ const appRoutes: Routes = [
   {path: 'laureats', component: LaureatsComponent},
 //  {path: 'new-laureat', component: NewLaureatComponent},
   {path: 'new-laureat', component: NouveauLaureatComponent},
+  {path: 'app-login', component: LoginComponent},
   {path: 'editLaureat/:id', component: EditLaureatComponent},
   {
     path: '',
@@ -85,7 +87,8 @@ const appRoutes: Routes = [
     NewLaureatComponent,
     NouveauLaureatComponent,
     EditLaureatComponent,
-    MapComponent
+    MapComponent,
+    LoginComponent
   ],
   imports: [
     BrowserAnimationsModule,
