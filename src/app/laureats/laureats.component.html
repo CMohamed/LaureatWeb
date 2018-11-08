@@ -5,8 +5,8 @@
 <div class="container spacer">
 
   <mat-form-field>
-    <mat-select placeholder="Organisme" [(ngModel)] = organismesList>
-      <mat-option value=""></mat-option>
+    <mat-select placeholder="Organisme" [(ngModel)] = "organisme">
+      <mat-option value="">Organisme</mat-option>
       <mat-option *ngFor="let or of organismesList"  [value]="or.nomorganisme">{{or.nomorganisme}}</mat-option>
     </mat-select>
   </mat-form-field>
@@ -28,14 +28,14 @@
 
   <mat-form-field>
     <mat-select placeholder="Filière" [(ngModel)]="filiere">
-      <mat-option value=""></mat-option>
+      <mat-option value="">Filière</mat-option>
       <mat-option *ngFor="let f of Filieres" [value]="f">{{f}}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field>
     <mat-select placeholder="Genre" [(ngModel)] = "genre">
-      <mat-option value="" ></mat-option>
+      <mat-option value="" >Genre</mat-option>
       <mat-option *ngFor="let gender of ['homme','femme','autre']" [value]="gender">{{gender}}</mat-option>
     </mat-select>
   </mat-form-field>
