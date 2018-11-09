@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
     console.log("---------- -------------------------------");
     if ( him != null){
       this.openSnackBar("CMohamed", "Welcome");
-      this.router.navigate(['about']);
+      this.router.navigate(['app-admin']);
     }else{
       //this.email='';
       //this.password='';

@@ -69,6 +69,7 @@ const appRoutes: Routes = [
 //  {path: 'new-laureat', component: NewLaureatComponent},
   {path: 'new-laureat', component: NouveauLaureatComponent},
   {path: 'app-login', component: LoginComponent},
+  {path: 'app-admin', component: AdminComponent},
   {path: 'editLaureat/:id', component: EditLaureatComponent},
   {
     path: '',
