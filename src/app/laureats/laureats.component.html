@@ -1,6 +1,13 @@
-<app-map height="100%" width="100%">
+<div class="container spacer" id="mapContainer" style=" height: 95%; width: 95%;">
+  <mat-card style="width: 100%; height: 100%;">
+    <app-map height="100%" width="100%">
 
-</app-map>
+    </app-map>
+  </mat-card>
+
+</div>
+
+
 
 <div class="container spacer">
 
@@ -8,6 +15,13 @@
     <mat-select placeholder="Organisme" [(ngModel)] = "organisme">
       <mat-option value="">Organisme</mat-option>
       <mat-option *ngFor="let or of organismesList"  [value]="or.nomorganisme">{{or.nomorganisme}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Secteur" [(ngModel)] = "secteur">
+      <mat-option value="">Secteur</mat-option>
+      <mat-option *ngFor="let sect of Secteurs"  [value]="sect">{{sect}}</mat-option>
     </mat-select>
   </mat-form-field>
 

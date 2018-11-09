@@ -36,12 +36,13 @@ export class LaureatsComponent implements OnInit {
   currentPage: number = 0;
   pages: Array<number>;
   //displayedColumns: string[] = ['nom', 'prenom', 'email', 'filiere', 'genre', 'organisme', 'dateInscription'];
-  columnsToDisplay: string[] = ['nom', 'prenom', 'email', 'filiere', 'genre', 'organisme', 'dateInscription'];
+  columnsToDisplay: string[] = ['nom', 'prenom', 'filiere', 'promotion', 'genre', 'nomorganisme', 'secteur', 'email', 'dateInscription'];
 
 
   expandedElement: PeriodicElement;
 
-  Filieres = ['GI','sig','GC','GE','IVE','IHE','Meteo'];
+  Secteurs = ['prive', 'public'];
+  Filieres = ['gi','sig','GC','GE','IVE','IHE','Meteo'];
   toppings = new FormControl();
 
 
