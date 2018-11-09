@@ -1,3 +1,30 @@
-<div class="container spacer">
+<div class="container spacer" style="text-align: center">
   <p> Administration</p>
+  <br><br><br>
+  <table class="table table-striped" >
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Prenom</th>
+      <th>Email</th>
+      <th>Filiere</th>
+      <th>Genre</th>
+      <th>Organisme</th>
+      <th>Date Inscription</th>
+    </tr>
+    <tr *ngFor="let l of pageLaureats" >
+      <td>{{l?.id}}</td>
+      <td>{{l?.nom}}</td>
+      <td>{{l?.prenom}}</td>
+      <td>{{l?.email}}</td>
+      <td>{{l?.filiere}}</td>
+      <td>{{l?.genre}}</td>
+      <td>{{l?.organisme}}</td>
+      <td>{{l?.dateInscription}}</td>
+      <td>
+        <a (click)="onEditLaureat(l?.id)" classe="clickable" >Edit</a>
+      </td>
+
+    </tr>
+  </table>
 </div>

@@ -40,7 +40,6 @@ export class LaureatsComponent implements OnInit {
   columnsToDisplay: string[] = ['nom', 'prenom', 'filiere', 'promotion', 'genre', 'nomorganisme', 'secteur', 'email', 'dateInscription'];
 
 
-  expandedElement: PeriodicElement;
 
   Secteurs = ['prive', 'public'];
   Filieres = ['GI','SIG','GC','GE','IVE','IHE','Meteo'];

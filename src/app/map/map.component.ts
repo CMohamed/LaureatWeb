@@ -31,6 +31,7 @@ export class MapComponent implements OnInit{
       (laureatsImported: any[]) => {
 
         console.log(laureatsImported);
+        this.laureatsList = laureatsImported;
         console.log("this geo a commencé");
         this.getGeo();
 
@@ -62,6 +63,7 @@ export class MapComponent implements OnInit{
 
     console.log("Starting up ArcGIS map");
 
+
     let map = new Map({
       basemap: 'hybrid'
     });
@@ -79,8 +81,12 @@ export class MapComponent implements OnInit{
 
 
     if(this.laureatsList && this.laureatsList.length){
+      console.log("----------------------------1---------------------------");
+      console.log("-------------------------------------------------------");
 
       for(let i=0;i<this.laureatsList.length;i++) {
+        console.log("---------------------2----------------------------------");
+
 
 
         if (this.laureatsList[i] && this.laureatsList[i].long && this.laureatsList[i].lat) {
@@ -90,14 +96,14 @@ export class MapComponent implements OnInit{
             geometry: {
               type: "point", // autocasts as new Point()
               longitude: Number(this.laureatsList[i].long),
-              latitude: Number(this.laureatsList[i].lat)
+              latitude:  Number(this.laureatsList[i].lat) //33.35 //
             },
             symbol: {
               type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
               color: [255, 0, 255],
               outline: { // autocasts as new SimpleLineSymbol()
                 color: [255, 255, 255],
-                width: 1
+                width: 2
               }
             },
             attributes: {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Subscription} from 'rxjs';
+import {LaureatsServices} from '../../services/laureats.services';
 
 @Component({
   selector: 'app-admin',
@@ -7,7 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  constructor() { }
+  public laureatsListSubscription : Subscription;
+  public laureatsList : any[];
+
+  constructor(public laureatsServices : LaureatsServices) {
+    this.laureatsListSubscription = this.laureatsServices.laureatsList$.subscribe(
+      (laureatsImported: any[]) => {
+
+        console.log(laureatsImported);
+
+      }
+    );
+  }
 
   ngOnInit() {
   }
