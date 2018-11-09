@@ -60,6 +60,7 @@ import { MapComponent } from './map/map.component';
 import {OrganismesServices} from '../services/organismes.service';
 import { LoginComponent } from './login/login.component';
 import {AuthentificationServices} from '../services/authentification.services';
+import { AdminComponent } from './admin/admin.component';
 
 
 const appRoutes: Routes = [
@@ -89,7 +90,8 @@ const appRoutes: Routes = [
     NouveauLaureatComponent,
     EditLaureatComponent,
     MapComponent,
-    LoginComponent
+    LoginComponent,
+    AdminComponent
   ],
   imports: [
     BrowserAnimationsModule,

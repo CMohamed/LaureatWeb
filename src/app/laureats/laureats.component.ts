@@ -8,6 +8,7 @@ import {Laureat} from '../../Model/model.laureat';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Subscription} from 'rxjs';
 import {OrganismesServices} from '../../services/organismes.service';
+import {any} from '../../../node_modules/codelyzer/util/function';
 
 @Component({
   selector: 'app-laureats',
@@ -43,6 +44,10 @@ export class LaureatsComponent implements OnInit {
 
   Secteurs = ['prive', 'public'];
   Filieres = ['GI','SIG','GC','GE','IVE','IHE','Meteo'];
+  Promotions :Array<number> = new Array<number>();
+
+
+
   toppings = new FormControl();
 
 
@@ -95,6 +100,10 @@ export class LaureatsComponent implements OnInit {
 
   ngOnInit() {
     this.genre=""; this.filiere=""; this.province=""; this.organisme=""; this.secteur=""; this.promotion="";this.quota=2;
+    for (let i = 1974; i < 2020; i++) {
+      this.Promotions.push(i);
+    }
+    this.Promotions.reverse();
   }
 
   doSearch() {

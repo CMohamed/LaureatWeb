@@ -62,7 +62,7 @@ export class LaureatsServices {
 
     if(province != ""){
 
-      clauseWhere = clauseWhere + "organisme.province%20='" + secteur + "'%20and%20";
+      clauseWhere = clauseWhere + "organisme.province%20='" + province + "'%20and%20";
 
     }
 

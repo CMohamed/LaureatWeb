@@ -48,9 +48,23 @@
   </mat-form-field>
 
   <mat-form-field>
+    <mat-select placeholder="Promotion" [(ngModel)] = "promotion">
+      <mat-option value="" >Promotion</mat-option>
+      <mat-option *ngFor="let promo of Promotions" [value]="promo">{{promo}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
     <mat-select placeholder="Genre" [(ngModel)] = "genre">
       <mat-option value="" >Genre</mat-option>
       <mat-option *ngFor="let gender of ['homme','femme','autre']" [value]="gender">{{gender}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Province" [(ngModel)] = "province">
+      <mat-option value="" >Province</mat-option>
+      <mat-option *ngFor="let prov of ['Casablanca','Rabat','Guelmim']" [value]="prov">{{prov}}</mat-option>
     </mat-select>
   </mat-form-field>
 
