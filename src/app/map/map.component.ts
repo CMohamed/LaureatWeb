@@ -16,8 +16,8 @@ import { LaureatsServices} from '../../services/laureats.services';
 export class MapComponent implements OnInit{
 
   @ViewChild('map') mapEl: ElementRef;LocateButton
-  public currentLong = 0;
-  public currentLat = 0;
+  public currentLong = -7.5;
+  public currentLat = 33.35;
   public erreur = 0;
 
   public laureatsListSubscription : Subscription;
@@ -26,6 +26,7 @@ export class MapComponent implements OnInit{
   constructor(public laureatsServices : LaureatsServices) {
 
 
+    this.getGeo();
     this.laureatsListSubscription = this.laureatsServices.laureatsList$.subscribe(
       (laureatsImported: any[]) => {
 
@@ -71,7 +72,7 @@ export class MapComponent implements OnInit{
       // create the map view at the DOM element in this component
       container: this.mapEl.nativeElement,
       center: [this.currentLong, this.currentLat],
-      zoom: 20
+      zoom: 6
     });
 
     mapView.map = map;
