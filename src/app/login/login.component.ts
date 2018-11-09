@@ -3,6 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import {AuthentificationServices} from '../../services/authentification.services';
 import {Subscription} from 'rxjs';
 import {MatSnackBar} from '@angular/material';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,24 +20,31 @@ export class LoginComponent implements OnInit {
   public password;
 
   emailControl = new FormControl('', [Validators.required, Validators.email]);
-
   hide = true;
 
-  constructor(public authentificationServices:AuthentificationServices, public snackBar: MatSnackBar) {
+  constructor(public authentificationServices:AuthentificationServices,
+              public snackBar: MatSnackBar,
+              public router: Router) {
 
     this.authentificationServices.emit();
     this.currentUserSubscription = this.authentificationServices.currentAuthentified$.subscribe(data => {
 
       this.currentUser = data;
+      console.log("---------- login consructor currentUser : ----------");
       console.log(data);
+      console.log("----------------------------------------------------");
+
       })
   }
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
-      duration: 2000,
+      duration: 5000,
     });
   }
 
+  /*
+  message de non validation du formulaire remplie
+   */
   getErrorMessage() {
     return this.emailControl.hasError('required') ? 'You must enter a value' :
       this.emailControl.hasError('email') ? 'Not a valid email' :
@@ -46,8 +54,12 @@ export class LoginComponent implements OnInit {
   submit(){
     this.authentificationServices.authentification(this.email,this.password);
     let him  = this.authentificationServices.getCurrentAuthentified();
+    console.log("---------- Submit this is him : ----------");
+    console.log(him);
+    console.log("---------- -------------------------------");
     if ( him != null){
       this.openSnackBar("CMohamed", "Welcome");
+      this.router.navigate(['about']);
     }else{
       //this.email='';
       //this.password='';

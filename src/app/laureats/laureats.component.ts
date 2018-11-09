@@ -42,7 +42,7 @@ export class LaureatsComponent implements OnInit {
   expandedElement: PeriodicElement;
 
   Secteurs = ['prive', 'public'];
-  Filieres = ['gi','sig','GC','GE','IVE','IHE','Meteo'];
+  Filieres = ['GI','SIG','GC','GE','IVE','IHE','Meteo'];
   toppings = new FormControl();
 
 
@@ -66,10 +66,7 @@ export class LaureatsComponent implements OnInit {
 
     this.organismesListSubscription = this.organismeService.organismeList$.subscribe(
       (organismes) => {
-
         this.organismesList = organismes;
-
-
       }
     );
 
@@ -84,7 +81,7 @@ export class LaureatsComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
 
-        console.log("le datasource");
+        console.log("le datasource :");
         console.log(this.dataSource);
 
 
