@@ -14,6 +14,9 @@ export class AuthentificationServices {
 
 
 
+  getCurrentAuthentified (){
+    return this.currentAuthentified;
+  }
   constructor(public httpClient: HttpClient) {
 
     this.emit();
