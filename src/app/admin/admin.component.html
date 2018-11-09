@@ -11,8 +11,9 @@
       <th>Genre</th>
       <th>Organisme</th>
       <th>Date Inscription</th>
+      <th>Gestion</th>
     </tr>
-    <tr *ngFor="let l of pageLaureats" >
+    <tr *ngFor="let l of laureatsList" >
       <td>{{l?.id}}</td>
       <td>{{l?.nom}}</td>
       <td>{{l?.prenom}}</td>
@@ -27,4 +28,12 @@
 
     </tr>
   </table>
+
+  <div class="container">
+    <ul class="nav nav-pills">
+      <li class="nav-item active"  *ngFor="let p of pages; let i=index " >
+        <a [ngClass] = "{'nav-link clickable':true, 'active': i==currentPage}" (click)="goToPage(i)">{{i}}</a>
+      </li>
+    </ul>
+  </div>
 </div>
