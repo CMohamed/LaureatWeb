@@ -1,39 +1,42 @@
 <div class="container spacer" style="text-align: center">
-  <p> Administration</p>
+  <h1> Administration</h1>
   <br><br><br>
-  <table class="table table-striped" >
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Prenom</th>
-      <th>Email</th>
-      <th>Filiere</th>
-      <th>Genre</th>
-      <th>Organisme</th>
-      <th>Date Inscription</th>
-      <th>Gestion</th>
-    </tr>
-    <tr *ngFor="let l of laureatsList" >
-      <td>{{l?.id}}</td>
-      <td>{{l?.nom}}</td>
-      <td>{{l?.prenom}}</td>
-      <td>{{l?.email}}</td>
-      <td>{{l?.filiere}}</td>
-      <td>{{l?.genre}}</td>
-      <td>{{l?.organisme}}</td>
-      <td>{{l?.dateInscription}}</td>
-      <td>
-        <a (click)="onEditLaureat(l?.id)" classe="clickable" >Edit</a>
-      </td>
+  <mat-card>
+    <table class="table table-striped" >
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Prenom</th>
+        <th>Email</th>
+        <th>Filiere</th>
+        <th>Genre</th>
+        <th>Organisme</th>
+        <th>Date Inscription</th>
+        <th>Gestion</th>
+      </tr>
+      <tr *ngFor="let l of laureatsList" >
+        <td>{{l?.id}}</td>
+        <td>{{l?.nom}}</td>
+        <td>{{l?.prenom}}</td>
+        <td>{{l?.email}}</td>
+        <td>{{l?.filiere}}</td>
+        <td>{{l?.genre}}</td>
+        <td>{{l?.organisme}}</td>
+        <td>{{l?.dateInscription}}</td>
+        <td>
+          <a (click)="onEditLaureat(l?.id)" classe="clickable" >Edit</a>
+        </td>
 
-    </tr>
-  </table>
+      </tr>
+    </table>
 
-  <div class="container">
-    <ul class="nav nav-pills">
-      <li class="nav-item active"  *ngFor="let p of pages; let i=index " >
-        <a [ngClass] = "{'nav-link clickable':true, 'active': i==currentPage}" (click)="goToPage(i)">{{i}}</a>
-      </li>
-    </ul>
-  </div>
+    <div class="container">
+      <ul class="nav nav-pills">
+        <li class="nav-item active"  *ngFor="let p of pages; let i=index " >
+          <a [ngClass] = "{'nav-link clickable':true, 'active': i==currentPage}" (click)="goToPage(i)">{{i}}</a>
+        </li>
+      </ul>
+    </div>
+  </mat-card>
+
 </div>

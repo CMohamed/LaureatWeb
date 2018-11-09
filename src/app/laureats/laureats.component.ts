@@ -107,9 +107,7 @@ export class LaureatsComponent implements OnInit {
 
   doSearch() {
 
-
     this.laureatservice.nouveauFiltre(this.genre,this.filiere,this.province,this.organisme,this.secteur,this.promotion,this.quota);
-
 
 
   }
