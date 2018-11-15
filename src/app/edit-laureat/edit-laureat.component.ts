@@ -15,6 +15,9 @@ export class EditLaureatComponent implements OnInit {
   constructor(public activatedRoute: ActivatedRoute,
               public laureatsService: LaureatsServices,
               public router: Router) {
+
+
+
     this.idLaureat = activatedRoute.snapshot.params['id'];
     /*
     console.log('......................................');
