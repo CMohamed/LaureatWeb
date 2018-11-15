@@ -6,7 +6,9 @@ import { AppComponent } from './app.component';
 import { LaureatsComponent } from './laureats/laureats.component';
 import {RouterModule, Routes} from '@angular/router';
 import {AboutComponent} from './about/about.component';
-import {LaureatsServices} from 'src/services/laureats.services'
+import {LaureatsServices} from 'src/services/laureats.services';
+import {AvancementServices} from 'src/services/avancements.services';
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NewLaureatComponent } from './new-laureat/new-laureat.component';
 import { NouveauLaureatComponent } from './nouveau-laureat/nouveau-laureat.component';
@@ -149,7 +151,8 @@ const appRoutes: Routes = [
   ],
   providers: [LaureatsServices,
               OrganismesServices,
-              AuthentificationServices
+              AuthentificationServices,
+              AvancementServices
   ],
   bootstrap: [AppComponent],
   exports: [
