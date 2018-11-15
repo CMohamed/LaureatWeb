@@ -5,15 +5,15 @@
 
   <span class="title">EHTP Annuaire</span>
 
-  <button mat-button routerLink="/about">Accueil</button>
+  <button mat-button routerLink="/accueil">Accueil</button>
   <button mat-button routerLink="/about">About</button>
   <button mat-button routerLink="/laureats">Laureats</button>
-  <button mat-button routerLink="/new-laureat">Nouveau Laureat</button>
-  <button mat-button *ngIf="currentUser" [matMenuTriggerFor]="menu">Administration</button>
+  <!-- <button mat-button routerLink="/new-laureat">Nouveau Laureat</button> -->
+  <button mat-button  [matMenuTriggerFor]="menu">Administration</button> <!-- *ngIf="currentUser" -->
   <mat-menu #menu="matMenu">
     <button mat-menu-item  routerLink="/app-admin">Manage laureats</button>
     <button mat-menu-item>Edit Laureat</button>
-    <button mat-menu-item>New Laureat</button>
+    <button mat-menu-item routerLink="/new-laureat">New Laureat</button>
   </mat-menu>
 
   <span class="spacer"></span>

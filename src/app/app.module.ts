@@ -63,10 +63,13 @@ import {OrganismesServices} from '../services/organismes.service';
 import { LoginComponent } from './login/login.component';
 import {AuthentificationServices} from '../services/authentification.services';
 import { AdminComponent } from './admin/admin.component';
+import { AccueilComponent } from './accueil/accueil.component';
+import { LaureatDetaillesComponent } from './laureat-detailles/laureat-detailles.component';
 
 
 const appRoutes: Routes = [
   {path: 'about', component: AboutComponent},
+  {path: 'accueil', component: AccueilComponent},
   {path: 'laureats', component: LaureatsComponent},
 //  {path: 'new-laureat', component: NewLaureatComponent},
   {path: 'new-laureat', component: NouveauLaureatComponent},
@@ -94,7 +97,9 @@ const appRoutes: Routes = [
     EditLaureatComponent,
     MapComponent,
     LoginComponent,
-    AdminComponent
+    AdminComponent,
+    AccueilComponent,
+    LaureatDetaillesComponent
   ],
   imports: [
     BrowserAnimationsModule,
