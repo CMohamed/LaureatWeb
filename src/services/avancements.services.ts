@@ -15,6 +15,7 @@ export class AvancementServices {
 
   constructor(public httpClient: HttpClient) {
 
+    this.getAvancements();
     this.emitList();
 
 

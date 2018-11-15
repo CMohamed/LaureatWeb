@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Subscription} from 'rxjs';
-import {LaureatsServices} from '../../services/laureats.services';
 import {Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material';
 import {Laureat} from '../../Model/model.laureat';
+import {AvancementServices} from '../../services/avancements.services';
 
 @Component({
   selector: 'app-admin',
@@ -12,11 +12,10 @@ import {Laureat} from '../../Model/model.laureat';
 })
 export class AdminComponent implements OnInit {
 
-  public laureatsListSubscription : Subscription;
-  public laureatsList : any[];
+  public avancementsListSubscription : Subscription;
+  public avancementsList : any[];
   public router :Router;
 
-  columnsToDisplay: string[] = ['nom', 'prenom', 'filiere', 'promotion', 'genre', 'nomorganisme', 'secteur', 'email', 'Gestion'];
 
   dataSource: any;
 
@@ -29,38 +28,22 @@ export class AdminComponent implements OnInit {
   organisme :string;
   quota: number;
 
-  constructor(public laureatsServices : LaureatsServices) {
-    this.laureatsListSubscription = this.laureatsServices.laureatsList$.subscribe(
-      (laureatsImported: any[]) => {
+  constructor(public avancementServices : AvancementServices) {
 
-        this.laureatsList = laureatsImported;
-        console.log(laureatsImported);
-        this.dataSource = new MatTableDataSource<Laureat>(this.laureatsList);
+    this.avancementsListSubscription = this.avancementServices.avancementsList$.subscribe(
+      (avancementsImported: any[]) => {
+
+        this.avancementsList = avancementsImported;
+        console.log(avancementsImported);
 
       }
     );
+
   }
 
   ngOnInit() {
     this.genre=""; this.filiere=""; this.province=""; this.organisme=""; this.secteur=""; this.promotion="";this.quota=2;
   }
 
-  doSearch() {
 
-    this.laureatsServices.nouveauFiltre(this.genre,this.filiere,this.province,this.organisme,this.secteur,this.promotion,this.quota);
-
-
-  }
-  chercher() {
-    this.doSearch();
-  }
-
-  goToPage(i: number) {
-    this.currentPage = i;
-    this.doSearch();
-  }
-
-  onEditLaureat(id: number) {
-    this.router.navigate(['editLaureat',id]);
-  }
 }
