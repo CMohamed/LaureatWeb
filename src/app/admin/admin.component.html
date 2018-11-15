@@ -4,12 +4,14 @@
   <br>
 
 
+
   <h1 style="text-align: center">Gestion Inscription:</h1>
 
 
   <br>
 
   <div *ngFor="let avancement of avancementsList">
+
     <mat-card class="example-card" >
       <mat-card-header>
         <div mat-card-avatar class="example-header-image" [ngStyle]="{'background-image': 'url(' + avancement.photo + ')'}"></div>
@@ -23,11 +25,16 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button>Editer</button>
-        <button mat-button>Détail</button>
+        <button mat-button (click)="editer(avancement)">Editer</button>
+        <button mat-button (click)="detail(avancement)">Détail</button>
       </mat-card-actions>
     </mat-card>
+
+    <laureat-detailles *ngIf="avancement.detailAffiche" [avancement]="avancement" ></laureat-detailles>
+
     <br>
+
+
 
   </div>
 
