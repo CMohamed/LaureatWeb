@@ -9,6 +9,12 @@
   <button mat-button routerLink="/about">About</button>
   <button mat-button routerLink="/laureats">Laureats</button>
   <button mat-button routerLink="/new-laureat">Nouveau Laureat</button>
+  <button mat-button [matMenuTriggerFor]="menu">Administration</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Manage laureats</button>
+    <button mat-menu-item>Edit Laureat</button>
+    <button mat-menu-item>New Laureat</button>
+  </mat-menu>
   <button mat-button routerLink="/app-admin" *ngIf="currentUser">Administration</button>
 
   <span class="spacer"></span>
