@@ -12,7 +12,7 @@
   <button mat-button  [matMenuTriggerFor]="menu">Administration</button> <!-- *ngIf="currentUser" -->
   <mat-menu #menu="matMenu">
     <button mat-menu-item  routerLink="/app-admin">Manage laureats</button>
-    <button mat-menu-item>Edit Laureat</button>
+    <button mat-menu-item routerLink="/laureat-detailles">Edit Laureat</button>
     <button mat-menu-item routerLink="/new-laureat">New Laureat</button>
   </mat-menu>
 

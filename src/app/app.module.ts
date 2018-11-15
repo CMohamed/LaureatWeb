@@ -68,6 +68,7 @@ import { LaureatDetaillesComponent } from './laureat-detailles/laureat-detailles
 const appRoutes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'accueil', component: AccueilComponent},
+  {path: 'laureat-detailles', component: LaureatDetaillesComponent},
   {path: 'laureats', component: LaureatsComponent},
 //  {path: 'new-laureat', component: NewLaureatComponent},
   {path: 'new-laureat', component: NouveauLaureatComponent},
