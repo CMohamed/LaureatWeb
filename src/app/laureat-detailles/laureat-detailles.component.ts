@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 
 @Component({
   selector: 'laureat-detailles',
@@ -11,12 +11,16 @@ export class LaureatDetaillesComponent implements OnInit {
     avancement : "accepted",
     photo : "url",
 
-  }
+  };
   Detailles = {
     avancement : "nonAccepted",
     photo : "url",
 
-  }
+  };
+  
+  @Input() avancement;
+   
+  
 
   constructor() { }
 
