@@ -1,0 +1,15 @@
+Accueil :
+- rédiger un contenu :
+	* présenter école / association
+	* cette solution : Encadrant, équipe, fonctionnalités, délais & progress
+	* liens utiles
+Admin :
++ ajouter un laureat
++ edit un laureat
++ approver les demandes et les rejeter en déclarant le motif
+Membre :
+- le rest des fonctionnalités :
+	* filtrer / consulter/ ...
+
+Filtrage :
+Dashboard :

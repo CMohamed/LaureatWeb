@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Subscription} from 'rxjs';
 import {LaureatsServices} from '../../services/laureats.services';
 import {Router} from '@angular/router';
+import {MatTableDataSource} from '@angular/material';
+import {Laureat} from '../../Model/model.laureat';
 
 @Component({
   selector: 'app-admin',
@@ -13,6 +15,10 @@ export class AdminComponent implements OnInit {
   public laureatsListSubscription : Subscription;
   public laureatsList : any[];
   public router :Router;
+
+  columnsToDisplay: string[] = ['nom', 'prenom', 'filiere', 'promotion', 'genre', 'nomorganisme', 'secteur', 'email', 'Gestion'];
+
+  dataSource: any;
 
   currentPage: number = 0;
   filiere :string;
@@ -29,12 +35,14 @@ export class AdminComponent implements OnInit {
 
         this.laureatsList = laureatsImported;
         console.log(laureatsImported);
+        this.dataSource = new MatTableDataSource<Laureat>(this.laureatsList);
 
       }
     );
   }
 
   ngOnInit() {
+    this.genre=""; this.filiere=""; this.province=""; this.organisme=""; this.secteur=""; this.promotion="";this.quota=2;
   }
 
   doSearch() {

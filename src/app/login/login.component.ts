@@ -30,9 +30,17 @@ export class LoginComponent implements OnInit {
     this.currentUserSubscription = this.authentificationServices.currentAuthentified$.subscribe(data => {
 
       this.currentUser = data;
-      console.log("---------- login consructor currentUser : ----------");
-      console.log(data);
-      console.log("----------------------------------------------------");
+
+      if ( this.currentUser != null){
+        this.openSnackBar("CMohamed", "Welcome");
+        this.router.navigate(['app-admin']);
+      }else{
+        //this.email='';
+        //this.password='';
+        this.openSnackBar("email or pass is ", "Wrong");
+        //this.router.navigate(['app-admin']);
+      }
+
 
       })
   }
@@ -52,19 +60,10 @@ export class LoginComponent implements OnInit {
   }
 
   submit(){
+
     this.authentificationServices.authentification(this.email,this.password);
-    let him  = this.authentificationServices.getCurrentAuthentified();
-    console.log("---------- Submit this is him : ----------");
-    console.log(him);
-    console.log("---------- -------------------------------");
-    if ( him != null){
-      this.openSnackBar("CMohamed", "Welcome");
-      this.router.navigate(['app-admin']);
-    }else{
-      //this.email='';
-      //this.password='';
-      this.openSnackBar("email or pass is ", "Wrong");
-    }
+
+
   }
 
 
