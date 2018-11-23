@@ -39,8 +39,12 @@ export class AdminComponent implements OnInit {
       (avancementsImported: any[]) => {
 
         this.avancementsList = avancementsImported;
+
         for(let i =0; i<this.avancementsList.length; i++){
+
           this.avancementsList[i]["detailAffiche"] = false;
+          this.avancementsList[i]["editionAffiche"] = false;
+
         }
         console.log(avancementsImported);
 
@@ -58,22 +62,42 @@ export class AdminComponent implements OnInit {
   editer(avancement){
 
 
+    if(avancement.editionAffiche == false){
+
+      avancement.detailAffiche = false;
+      avancement.editionAffiche = true;
+
+    }
+    else{
+
+      avancement.detailAffiche = false;
+      avancement.editionAffiche = false;
+
+
+    }
 
 
   }
 
+  historique(avancement){
 
+
+
+
+  }
 
   detail(avancement){
 
     if(avancement.detailAffiche == false){
 
+      avancement.editionAffiche = false;
       avancement.detailAffiche = true;
 
     }
     else{
 
       avancement.detailAffiche = false;
+      avancement.editionAffiche = false;
 
 
     }

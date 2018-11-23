@@ -10,6 +10,7 @@
   <br>
 
   <div *ngFor="let avancement of avancementsList">
+
     <mat-card class="example-card" >
       <mat-card-header>
         <div mat-card-avatar class="example-header-image" [ngStyle]="{'background-image': 'url(' + avancement.photo + ')'}"></div>
@@ -19,19 +20,29 @@
       <mat-card-content>
         <br>
         <p style="margin-left: 2%;margin-top: 2%;">
-          {{avancement.description}}v fgerzgkerjgoiertgjroeisgjerpo gprogj sprjgoisrtjhiosrtjhpijsrtphjorithoisrth oisrhoidfhoisdfgjbldsgj lidsf lsdg
+          {{avancement.description}}
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button>Editer</button>
+        <button mat-button (click)="editer(avancement)">Editer</button>
         <button mat-button (click)="detail(avancement)">Détail</button>
+        <button mat-button (click)="historique(avancement)">Historique</button>
       </mat-card-actions>
+
+      <laureat-detailles *ngIf="avancement.detailAffiche" [avancement]="avancement" ></laureat-detailles>
+
+      <laureat-detailles *ngIf="avancement.editionAffiche" [avancement]="avancement" ></laureat-detailles>
 
     </mat-card>
 
-    <laureat-detailles *ngIf="avancement.detailAffiche" [avancement]="avancement" ></laureat-detailles>
-
     <br>
+
+
+
+
+
+
+
 
   </div>
 

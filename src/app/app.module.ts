@@ -65,6 +65,7 @@ import {AuthentificationServices} from '../services/authentification.services';
 import { AdminComponent } from './admin/admin.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { LaureatDetaillesComponent } from './laureat-detailles/laureat-detailles.component';
+import { HistoriqueLaureatComponent } from './historique-laureat/historique-laureat.component';
 
 
 const appRoutes: Routes = [
@@ -100,7 +101,8 @@ const appRoutes: Routes = [
     LoginComponent,
     AdminComponent,
     AccueilComponent,
-    LaureatDetaillesComponent
+    LaureatDetaillesComponent,
+    HistoriqueLaureatComponent
   ],
   imports: [
     BrowserAnimationsModule,

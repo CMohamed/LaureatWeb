@@ -1,6 +1,53 @@
 
 
-<div class="container spacer" id="mapContainer" style=" height: 95%; width: 95%;">
+
+<div class="container spacer">
+  <mat-card>
+
+    <mat-form-field>
+      <mat-select placeholder="Organisme" [(ngModel)] = "organisme">
+        <mat-option value="">Organisme</mat-option>
+        <mat-option *ngFor="let or of organismesList"  [value]="or.nomorganisme">{{or.nomorganisme}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Secteur" [(ngModel)] = "secteur">
+        <mat-option value="">Secteur</mat-option>
+        <mat-option *ngFor="let sect of Secteurs"  [value]="sect">{{sect}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Filière" [(ngModel)]="filiere">
+        <mat-option value="">Filière</mat-option>
+        <mat-option *ngFor="let f of Filieres" [value]="f">{{f}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Promotion" [(ngModel)] = "promotion">
+        <mat-option value="" >Promotion</mat-option>
+        <mat-option *ngFor="let promo of Promotions" [value]="promo">{{promo}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Province" [(ngModel)] = "province">
+        <mat-option value="" >Province</mat-option>
+        <mat-option *ngFor="let prov of ['Casablanca','Rabat','Guelmim']" [value]="prov">{{prov}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" (click)="chercher()" >Chercher</button>
+
+  </mat-card>
+
+
+</div>
+
+
+<div class="container spacer" id="mapContainer" style=" height: 700px; width: 100%">
 
   <mat-card style="width: 100%; height: 100%;">
 
@@ -14,6 +61,8 @@
 
 
 <div class="container spacer">
+
+  <mat-card>
 
   <mat-form-field>
     <mat-select placeholder="Organisme" [(ngModel)] = "organisme">
@@ -43,12 +92,6 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field>
-    <mat-select placeholder="Genre" [(ngModel)] = "genre">
-      <mat-option value="" >Genre</mat-option>
-      <mat-option *ngFor="let gender of ['homme','femme','autre']" [value]="gender">{{gender}}</mat-option>
-    </mat-select>
-  </mat-form-field>
 
   <mat-form-field>
     <mat-select placeholder="Province" [(ngModel)] = "province">
@@ -102,5 +145,7 @@
                  [pageSizeOptions]="[1, 2, 3, 4, 5, 10, 25, 100]"
                  showFirstLastButtons>
   </mat-paginator>
+
+  </mat-card>
 
 </div>
