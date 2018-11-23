@@ -3,13 +3,12 @@
 <mat-card role="group">
     <mat-card class="example-card">
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{avancement.nom}} {{avancement.prenom}}</mat-card-title>
-        <mat-card-subtitle>Avancement :<span [ngClass]="{'accepted': Detailles1.avancement =='accepted','rejected': !(Detailles1.avancement =='accepted')}"> {{Detailles1.avancement}} </span> </mat-card-subtitle>
+
+        <mat-card-title>Détail</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <p>
-          {{avancement.description}}
+          Motif : {{avancement.motif}}
         </p>
       </mat-card-content>
     </mat-card>

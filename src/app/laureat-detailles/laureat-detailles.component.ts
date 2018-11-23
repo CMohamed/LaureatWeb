@@ -7,16 +7,7 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class LaureatDetaillesComponent implements OnInit {
 
-  Detailles1 = {
-    avancement : "accepted",
-    photo : "url",
 
-  };
-  Detailles = {
-    avancement : "nonAccepted",
-    photo : "url",
-
-  };
   
   @Input() avancement;
    
