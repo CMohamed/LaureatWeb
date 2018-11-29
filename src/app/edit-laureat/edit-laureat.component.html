@@ -1,81 +1,40 @@
-<div class="container spacer">
-  <div class="card border-primary" *ngIf="mode==1">
-    <div class="card-header">Nouveau laureat</div>
-    <div class="card-body">
-      <div  >
-        <div class="form-group">
-          <label >Name:</label>
-          <input class="form-control" type="text" [(ngModel)]="laureat.name"/>
-        </div>
-        <div class="form-group">
-          <label >Prenom:</label>
-          <input class="form-control" type="text" [(ngModel)]="laureat.prenom"/>
-        </div>
-        <div class="form-group">
-          <label >Email:</label>
-          <input class="form-control" type="text" [(ngModel)]="laureat.email"/>
-        </div>
-        <div class="form-group">
-          <label >Filière :</label>
-          <input class="form-control" type="text" [(ngModel)]="laureat.filiere"/>
-        </div>
-        <div class="form-group">
-          <label >Genre:</label>
-          <input class="form-control" type="text" [(ngModel)]="laureat.genre"/>
-        </div>
-        <div class="form-group">
-          <label >Tel:</label>
-          <input class="form-control" type="text" [(ngModel)]="laureat.tel"/>
-        </div>
-        <div class="form-group">
-          <label >Organisme:</label>
-          <input class="form-control" type="text" [(ngModel)]="laureat.organisme"/>
-        </div>
 
-        <button class="btn btn-primary" (click)="updateLaureat()">Save</button>
-      </div>
-    </div>
-  </div>
 
-  <div class="card border-primary" *ngIf="mode==2">
-    <div class="card-header">Confirmation</div>
-    <div class="card-body">
-      <div  >
-        <div class="form-group">
-          <label >ID : </label>
-          <label> {{laureat.id}} </label>
-        </div>
-        <div class="form-group">
-          <label >Name : </label>
-          <label> {{laureat.name}} </label>
-        </div>
-        <div class="form-group">
-          <label >Prenom : </label>
-          <label> {{laureat.prenom}} </label>
-        </div>
-        <div class="form-group">
-          <label >Email : </label>
-          <label>{{laureat.email}}</label>
-        </div>
-        <div class="form-group">
-          <label >Filière : </label>
-          <label>{{laureat.filiere}}</label>
-        </div>
-        <div class="form-group">
-          <label >Genre : </label>
-          <label>{{laureat.genre}}</label>
-        </div>
-        <div class="form-group">
-          <label >Tel : </label>
-          <label>{{laureat.tel}}</label>
-        </div>
-        <div class="form-group">
-          <label >Organisme : </label>
-          <label>{{laureat.organisme}}</label>
-        </div>
+<mat-card>
 
-        <button class="btn btn-primary" (click)="mode=1">Nouveau Laureat</button>
-      </div>
-    </div>
-  </div>
-</div>
+  <mat-card-header >
+
+    <mat-card-title>Editer Avancement</mat-card-title>
+
+  </mat-card-header>
+
+  <mat-card-content>
+
+
+    <mat-form-field>
+      <mat-select placeholder="Etat Avancement" [(ngModel)] = "etat">
+        <mat-option value="" >Avancement</mat-option>
+        <mat-option *ngFor="let ele of ['accepté','rejeté','information(s) manquante(s)']" [value]="ele">{{ele}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Détail/Motif:" [(ngModel)] = "motif">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="modifierAvancement()">Modifier</button>
+
+
+  </mat-card-content>
+
+
+
+
+
+
+
+
+
+
+</mat-card>
+

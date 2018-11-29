@@ -1,21 +1,40 @@
 
 <mat-card class="example-card">
 
+  <mat-card-header >
+
+    <mat-card-title>Détail</mat-card-title>
+
+  </mat-card-header>
+
   <mat-card-content>
     <p>
-      motif : {{avancement.motif}}
+      Nom : {{dernierAvancement.nom}}
     </p>
-  </mat-card-content>
-<mat-card role="group">
-    <mat-card class="example-card">
-      <mat-card-header>
+    <p>
+      Prénom : {{dernierAvancement.prenom}}
+    </p>
+    <p>
+      Date d'inscription : {{dernierAvancement.dateinscription}}
+    </p>
+    <p>
+      Description : {{dernierAvancement.description}}
+    </p>
+    <p>
+      Email : {{dernierAvancement.email}}
+    </p>
+    <p>
+      Promotion : {{dernierAvancement.promotion}}
+    </p>
+    <p>
+      Organisme : {{dernierAvancement.nomorganisme}}
+    </p>
+    <p>
+      Secteur : {{dernierAvancement.secteur}}
+    <p>
+      Province : {{dernierAvancement.province}}
+    </p>
 
-        <mat-card-title>Détail</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          Motif : {{avancement.motif}}
-        </p>
-      </mat-card-content>
-    </mat-card>
+  </mat-card-content>
+
 </mat-card>

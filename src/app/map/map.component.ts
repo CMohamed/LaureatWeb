@@ -91,13 +91,26 @@ export class MapComponent implements OnInit{
 
         if (this.laureatsList[i] && this.laureatsList[i].long && this.laureatsList[i].lat) {
 
+          //console.log(this.laureatsList[i].photo);
+
+          let symbol = {
+            type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+            url: "http://www.leseco.ma/images/1619/EHTP.jpg",
+            width: "64px",
+            height: "64px"
+          };
+
 
           let pointGraphic = new Graphic({
             geometry: {
               type: "point", // autocasts as new Point()
               longitude: Number(this.laureatsList[i].long),
-              latitude:  Number(this.laureatsList[i].lat) //33.35 //
+              latitude:  Number(this.laureatsList[i].lat)
             },
+
+            symbol : symbol
+
+            /*
             symbol: {
               type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
               color: [255, 0, 255],
@@ -105,7 +118,9 @@ export class MapComponent implements OnInit{
                 color: [255, 255, 255],
                 width: 2
               }
-            },
+            }
+            */
+            ,
             attributes: {
               Nom: this.laureatsList[i].nom,
               Prenom: this.laureatsList[i].prenom,

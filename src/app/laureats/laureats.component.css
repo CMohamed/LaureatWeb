@@ -45,3 +45,11 @@ tr.example-element-row:not(.example-expanded-row):active {
 .example-element-description-attribution {
   opacity: 0.5;
 }
+
+@media (max-width: 1200px){
+  mat-card{
+    display: flex;
+    flex-direction: column;
+  }
+
+}

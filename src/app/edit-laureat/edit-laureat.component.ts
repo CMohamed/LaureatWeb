@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {Laureat} from '../../Model/model.laureat';
-import {ActivatedRoute, Router} from '@angular/router';
-import {LaureatsServices} from '../../services/laureats.services';
+import {Component, Input, OnInit} from '@angular/core';
+import {AvancementServices} from '../../services/avancements.services';
+import {HttpClient} from '@angular/common/http';
+import {formatDate} from '@angular/common';
+
 
 @Component({
   selector: 'app-edit-laureat',
@@ -9,45 +10,51 @@ import {LaureatsServices} from '../../services/laureats.services';
   styleUrls: ['./edit-laureat.component.css']
 })
 export class EditLaureatComponent implements OnInit {
-  mode: number = 1;
-  laureat: Laureat = new Laureat();
-  idLaureat: number;
-  constructor(public activatedRoute: ActivatedRoute,
-              public laureatsService: LaureatsServices,
-              public router: Router) {
+
+  @Input() dernierAvancement;
+
+  public etat : any;
+  public motif : any;
 
 
 
-    this.idLaureat = activatedRoute.snapshot.params['id'];
-    /*
-    console.log('......................................');
-    console.log(activatedRoute.snapshot.params['id']);
-    console.log('......................................');
-*/
+  constructor(public avancementServices : AvancementServices, public httpClient: HttpClient) {
+
+
+    console.log(formatDate(new Date(), 'yyyy-MM-dd', 'en'));
+
+
+
 
   }
 
   ngOnInit() {
-    /*
-    this.laureatsService.getLaureat(this.idLaureat)
-      .subscribe((data: any)  => {
-        this.laureat = data;
-      },err => {
-        console.log(err);
-      });
-      */
+
+    this.etat = "";
+    this.motif = "";
+
+
+
   }
 
-  updateLaureat() {
-    /*
-    this.laureatsService.updateLaureat(this.laureat)
-      .subscribe((data) => {
-        alert('Mise à jour effectué !');
-        this.router.navigate(['laureats']);
-      },err => {
-        console.log(err);
-      });
-      */
+
+  modifierAvancement() {
+
+    console.log(this.dernierAvancement);
+
+    this.httpClient.get("http://localhost:9090/requestAny/" +
+      "INSERT%20INTO%20" +
+      "avancement%20" +
+      "(datetraitement,%20motif,%20refutilisateur,%20etat)%20" +
+      "VALUES%20" +
+      "('" + formatDate(new Date(), 'yyyy-MM-dd', 'en').toString() + "','" + this.motif + "',%20" + this.dernierAvancement.refutilisateur +  ",%20'"+ this.etat +"')").subscribe( data => {
+
+    }, err => {
+      console.log("une erreur a été survenue : ce qui normale dans une requete insert")
+    });
+
+
   }
+
 
 }

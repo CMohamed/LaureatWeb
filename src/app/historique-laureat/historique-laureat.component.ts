@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {AvancementServices} from '../../services/avancements.services';
 
 @Component({
   selector: 'app-historique-laureat',
@@ -7,9 +9,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoriqueLaureatComponent implements OnInit {
 
-  constructor() { }
+
+
+  public avancementsHistoriqueList : any[];
+
+  @Input() dernierAvancementId : string;
+
+  constructor(public avancementServices : AvancementServices) {
+
+
+
+
+
+
+  }
 
   ngOnInit() {
+
+    console.log(this.dernierAvancementId);
+
+    if(this.dernierAvancementId){
+
+      this.avancementServices.getHistoriqueAvancementById(this.dernierAvancementId).subscribe(
+
+        (avancementsHistoriqueImported: any[]) => {
+
+          this.avancementsHistoriqueList = (avancementsHistoriqueImported as any).features;
+
+          for(let i =0; i<this.avancementsHistoriqueList.length; i++){
+
+            this.avancementsHistoriqueList[i]["detailAffiche"] = false;
+            this.avancementsHistoriqueList[i]["editionAffiche"] = false;
+
+          }
+
+          console.log(this.avancementsHistoriqueList);
+
+        }
+      );
+
+    }
+
   }
 
 }

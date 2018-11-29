@@ -35,21 +35,22 @@ export class AdminComponent implements OnInit {
 
   constructor(public avancementServices : AvancementServices) {
 
-    this.avancementsListSubscription = this.avancementServices.avancementsList$.subscribe(
-      (avancementsImported: any[]) => {
+        this.avancementsListSubscription = this.avancementServices.avancementsList$.subscribe(
+          (avancementsImported: any[]) => {
 
-        this.avancementsList = avancementsImported;
+            this.avancementsList = avancementsImported;
 
-        for(let i =0; i<this.avancementsList.length; i++){
+            for(let i =0; i<this.avancementsList.length; i++){
 
-          this.avancementsList[i]["detailAffiche"] = false;
-          this.avancementsList[i]["editionAffiche"] = false;
+              this.avancementsList[i]["detailAffiche"] = false;
+              this.avancementsList[i]["editionAffiche"] = false;
+              this.avancementsList[i]["historiqueAffiche"] = false;
 
-        }
-        console.log(avancementsImported);
+            }
+            console.log(avancementsImported);
 
-      }
-    );
+          }
+        );
 
   }
 
@@ -66,12 +67,16 @@ export class AdminComponent implements OnInit {
 
       avancement.detailAffiche = false;
       avancement.editionAffiche = true;
+      avancement.historiqueAffiche = false;
+
 
     }
     else{
 
       avancement.detailAffiche = false;
       avancement.editionAffiche = false;
+      avancement.historiqueAffiche = false;
+
 
 
     }
@@ -80,6 +85,22 @@ export class AdminComponent implements OnInit {
   }
 
   historique(avancement){
+
+    if(avancement.historiqueAffiche == false){
+
+      avancement.editionAffiche = false;
+      avancement.detailAffiche = false;
+      avancement.historiqueAffiche = true;
+
+    }
+    else{
+
+      avancement.historiqueAffiche = false;
+      avancement.detailAffiche = false;
+      avancement.editionAffiche = false;
+
+
+    }
 
 
 
@@ -92,12 +113,16 @@ export class AdminComponent implements OnInit {
 
       avancement.editionAffiche = false;
       avancement.detailAffiche = true;
+      avancement.historiqueAffiche = false;
+
 
     }
     else{
 
       avancement.detailAffiche = false;
       avancement.editionAffiche = false;
+      avancement.historiqueAffiche = false;
+
 
 
     }

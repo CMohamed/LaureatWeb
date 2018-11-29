@@ -1,0 +1,16 @@
+.example-card {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.example-header-image {
+
+  background-size: cover;
+}
+.accepted {
+  color: green;
+}
+.rejected {
+  color: red;
+}

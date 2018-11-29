@@ -15,6 +15,8 @@ import { NouveauLaureatComponent } from './nouveau-laureat/nouveau-laureat.compo
 import { EditLaureatComponent } from './edit-laureat/edit-laureat.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+//nebular
+
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {CdkTableModule} from '@angular/cdk/table';
@@ -63,9 +65,11 @@ import {OrganismesServices} from '../services/organismes.service';
 import { LoginComponent } from './login/login.component';
 import {AuthentificationServices} from '../services/authentification.services';
 import { AdminComponent } from './admin/admin.component';
-import { AccueilComponent } from './accueil/accueil.component';
+import { AccueilComponent ,SafePipe} from './accueil/accueil.component';
 import { LaureatDetaillesComponent } from './laureat-detailles/laureat-detailles.component';
 import { HistoriqueLaureatComponent } from './historique-laureat/historique-laureat.component';
+import { PhotoComponent } from './photo/photo.component';
+import { StatistiqueLaureatComponent } from './statistique-laureat/statistique-laureat.component';
 
 
 const appRoutes: Routes = [
@@ -78,6 +82,8 @@ const appRoutes: Routes = [
   {path: 'app-login', component: LoginComponent},
   {path: 'app-admin', component: AdminComponent},
   {path: 'editLaureat/:id', component: EditLaureatComponent},
+  {path: 'statistique-laureat', component: StatistiqueLaureatComponent},
+  { path: 'base64tourl/:base64', component: PhotoComponent },
   {
     path: '',
     redirectTo: '/about',
@@ -101,8 +107,11 @@ const appRoutes: Routes = [
     LoginComponent,
     AdminComponent,
     AccueilComponent,
+    SafePipe,
     LaureatDetaillesComponent,
-    HistoriqueLaureatComponent
+    HistoriqueLaureatComponent,
+    PhotoComponent,
+    StatistiqueLaureatComponent
   ],
   imports: [
     BrowserAnimationsModule,

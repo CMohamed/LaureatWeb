@@ -1,4 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
+import {AvancementServices} from '../../services/avancements.services';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'laureat-detailles',
@@ -8,12 +10,16 @@ import { Component, OnInit,Input } from '@angular/core';
 export class LaureatDetaillesComponent implements OnInit {
 
 
-  
-  @Input() avancement;
+
+  @Input() dernierAvancement;
    
   
 
-  constructor() { }
+  constructor(public avancementServices : AvancementServices) {
+
+
+
+  }
 
   ngOnInit() {
   }

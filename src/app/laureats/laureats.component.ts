@@ -8,6 +8,8 @@ import {Laureat} from '../../Model/model.laureat';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Subscription} from 'rxjs';
 import {OrganismesServices} from '../../services/organismes.service';
+import { CommonModule } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import {any} from '../../../node_modules/codelyzer/util/function';
 
 @Component({

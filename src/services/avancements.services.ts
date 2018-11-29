@@ -33,8 +33,9 @@ export class AvancementServices {
 
     this.httpClient.get("http://localhost:9090/requestAny/" +
       "select%20*%20" +
-      "from%20utilisateur%20as%20U,%20avancement%20" +
+      "from%20utilisateur%20as%20U,%20avancement,organisme%20" +
       "where%20U.id%20=%20avancement.refutilisateur%20" +
+      "and%20U.reforganisme=organisme.id%20" +
       "and%20datetraitement%20is%20not%20null%20" +
       "and%20datetraitement%20%3E=%20" +
           "(select%20datetraitement%20" +
@@ -51,5 +52,18 @@ export class AvancementServices {
     );
 
   }
+
+
+  getHistoriqueAvancementById(id){
+
+    return this.httpClient.get("http://localhost:9090/requestAny/select%20*%20" +
+      "from%20utilisateur,%20avancement%20" +
+      "where%20utilisateur.id%20=%20avancement.refutilisateur%20" +
+      "and%20utilisateur.id%20=%20" + id.toString() + "%20" +
+      "order%20by%20datetraitement%20desc");
+
+  }
+
+
 
 }

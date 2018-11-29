@@ -14,3 +14,15 @@
 .rejected {
   color: red;
 }
+
+mat-card-content {
+
+  margin-left: 2%;
+
+}
+
+mat-card-header {
+
+  margin-left : 40%
+
+}

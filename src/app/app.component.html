@@ -6,20 +6,21 @@
   <span class="title">EHTP Annuaire</span>
 
   <button mat-button routerLink="/accueil">Accueil</button>
-  <button mat-button routerLink="/about">About</button>
+  <!-- button mat-button routerLink="/about">About</button -->
   <button mat-button routerLink="/laureats">Laureats</button>
   <!-- <button mat-button routerLink="/new-laureat">Nouveau Laureat</button> -->
   <button mat-button  [matMenuTriggerFor]="menu">Administration</button> <!-- *ngIf="currentUser" -->
   <mat-menu #menu="matMenu">
-    <button mat-menu-item  routerLink="/app-admin">Manage laureats</button>
-    <button mat-menu-item routerLink="/laureat-detailles">Edit Laureat</button>
-    <button mat-menu-item routerLink="/new-laureat">New Laureat</button>
+
+    <button mat-menu-item  routerLink="/app-admin">Administration laureats</button>
+    <button mat-menu-item routerLink="/statistique-laureat">Statistiques</button>
+    <!-- button mat-menu-item routerLink="/new-laureat">New Laureat</button -->
   </mat-menu>
 
   <span class="spacer"></span>
 
-  <button *ngIf="!currentUser" mat-button routerLink="/app-login">Login</button>
-  <button *ngIf="currentUser" mat-button (click)="currentUser=!currentUser; ">Logout</button>
+  <button *ngIf="!currentUser" mat-button routerLink="/app-login">Se connecter</button>
+  <button *ngIf="currentUser" mat-button (click)="currentUser=!currentUser; ">Déconnexion</button>
 </mat-toolbar>
 
 <div style="margin-top: 30px">

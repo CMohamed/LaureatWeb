@@ -15,7 +15,7 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image" [ngStyle]="{'background-image': 'url(' + avancement.photo + ')'}"></div>
         <mat-card-title>{{avancement.nom}} {{avancement.prenom}}</mat-card-title>
-        <mat-card-subtitle>Avancement :<span [ngClass]="{'ac':avancement.etat=='accepted','wa':avancement.etat!='accepted'}"> {{avancement.etat}} </span> </mat-card-subtitle>
+        <mat-card-subtitle>Avancement :<span [ngClass]="{'ac':avancement.etat=='accepté','wa':avancement.etat!='accepté'}"> {{avancement.etat}} </span> </mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <br>
@@ -30,21 +30,18 @@
         <button mat-button (click)="historique(avancement)">Historique</button>
       </mat-card-actions>
 
-      <laureat-detailles *ngIf="avancement.detailAffiche" [avancement]="avancement" ></laureat-detailles>
-
-      <laureat-detailles *ngIf="avancement.editionAffiche" [avancement]="avancement" ></laureat-detailles>
 
     </mat-card>
 
     <br>
 
+    <laureat-detailles *ngIf="avancement.detailAffiche" [dernierAvancement]="avancement" ></laureat-detailles>
 
+    <app-edit-laureat *ngIf="avancement.editionAffiche" [dernierAvancement]="avancement"></app-edit-laureat>
 
+    <app-historique-laureat *ngIf="avancement.historiqueAffiche" [dernierAvancementId]="avancement.refutilisateur"></app-historique-laureat>
 
-
-
-
-
+    <br>
   </div>
 
 
