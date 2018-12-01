@@ -10,11 +10,47 @@ import {HttpClient} from '@angular/common/http';
 })
 export class StatistiqueLaureatComponent implements OnInit {
 
+  public nombreDInscrit : number;
+  public moyenneParMois : number;
+  public nombreOrganisme : number;
+
   constructor(public httpClient: HttpClient) {
+
+    this.httpClient.get("http://localhost:9090/requestAny/" +
+      "select%20count(*)%20" +
+      "from%20utilisateur,%20avancement%20" +
+      "where%20utilisateur.id%20=%20avancement.refutilisateur%20" +
+      "and%20etat%20=%20'accept%C3%A9'").subscribe( data => {
+
+        this.nombreDInscrit = Number((data as any).features[0].count);
+        console.log(this.nombreDInscrit);
+    });
+
+      this.httpClient.get("http://localhost:9090/requestAny/" +
+        "select%20count(*)%20as%20nombreInscription%20,%20(max(datetraitement)-min(datetraitement))%20as%20dureeSite%20" +
+        "from%20utilisateur,%20avancement%20" +
+        "where%20utilisateur.id%20=%20avancement.refutilisateur%20" +
+        "and%20etat%20=%20'accept%C3%A9'").subscribe( data => {
+
+
+        this.moyenneParMois = parseInt((Number((data as any).features[0].nombreinscription) / (Number((data as any).features[0].dureesite)/12)).toString());
+        console.log(this.moyenneParMois);
+      });
+
+
+
+      this.httpClient.get("http://localhost:9090/requestAny/select%20count(*)%20as%20nombreorganisme%20" +
+        "from%20organisme").subscribe( data => {
+
+
+        this.nombreOrganisme = Number((data as any).features[0].nombreorganisme);
+
+      });
 
   }
 
   ngOnInit() {
+
 
     let chart;
 

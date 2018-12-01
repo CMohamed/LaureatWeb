@@ -1,24 +1,31 @@
-<div class="container spacer" style="text-align: center">
+<br>
+<br>
 
-  <mat-card >
+<h1 style="text-align: center">Connexion:</h1>
+
+<br>
+<br>
+
+<mat-card >
 
 
-    <img src="../../assets/images/ehtp-logo-clr.png" class="img-fluid" alt="ehtp-logo made by senju" style="height: 100px;"  >
+  <div>
+    <img src="../../assets/images/ehtp-logo-clr.png" class="img-fluid" alt="ehtp-logo made by senju" style="height: 100px;margin: auto; padding:auto"  >
+  </div>
 
-    <div class="example-container">
-      <mat-form-field>
-        <input [(ngModel)]="email" matInput placeholder="Enter your email" [formControl]="emailControl" required>
-        <mat-error *ngIf="emailControl.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
+  <br>
+  <div class="example-container">
+    <mat-form-field>
+      <input [(ngModel)]="email" matInput placeholder="Enter your email" [formControl]="emailControl" required>
+      <mat-error *ngIf="emailControl.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
 
-      <mat-form-field>
-        <input [(ngModel)]="password" matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </mat-form-field>
-    </div>
+    <mat-form-field>
+      <input [(ngModel)]="password" matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+  </div>
 
-    <button mat-flat-button color="accent" (click)="submit()" >Login</button>
+  <button mat-flat-button color="accent" (click)="submit()" >Login</button>
 
-  </mat-card>
-
-</div>
+</mat-card>
