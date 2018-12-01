@@ -44,7 +44,7 @@ export class LaureatsComponent implements OnInit {
 
 
   Secteurs = ['prive', 'public'];
-  Filieres = ['GI','SIG','GC','GE','IVE','IHE','Meteo'];
+  Filieres = ['gi','sig','gc','ge','ive','ihe','meteo'];
   Promotions :Array<number> = new Array<number>();
 
 
