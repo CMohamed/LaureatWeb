@@ -272,7 +272,7 @@ export class StatistiqueLaureatComponent implements OnInit {
         animationEnabled: true,
         exportEnabled: true,
         title: {
-          text: "Performance Demo - 10000 DataPoints"
+          text: "Nombre d'inscript par promotion"
         },
         subtitles:[{
           text: "Zoomez pour plus de détail"
