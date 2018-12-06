@@ -46,6 +46,38 @@ tr.example-element-row:not(.example-expanded-row):active {
   opacity: 0.5;
 }
 
+.colboutton {
+  margin-left: 9px;
+  margin-bottom: 9px;
+  display: block;
+  margin: auto;
+}
+
+
+mat-button-toggle-group{
+  margin-left: 10px;
+  border-color: #e1fff1;
+
+
+}
+
+mat-button-toggle {
+  background-color: #3c4fbc;
+  color: white;
+}
+
+.btn-secondary{
+  background-color: #3c4fbc;
+  color: white;
+}
+
+/*
+.mat-form-field{
+  width:140px;
+}
+*/
+
+
 @media (max-width: 1200px){
   mat-card{
     display: flex;

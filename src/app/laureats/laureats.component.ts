@@ -119,6 +119,12 @@ export class LaureatsComponent implements OnInit {
 
   }
 
+  annuler() {
+    this.genre=""; this.filiere=""; this.province=""; this.organisme=""; this.secteur=""; this.promotion="";this.quota=2;
+
+
+  }
+
   goToPage(i: number) {
     this.currentPage = i;
     this.doSearch();
@@ -126,7 +132,9 @@ export class LaureatsComponent implements OnInit {
 
   onEditLaureat(id: number) {
     this.router.navigate(['editLaureat',id]);
+
   }
+
 
 
 

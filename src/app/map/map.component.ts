@@ -6,6 +6,7 @@ import { loadModules } from 'esri-loader';
 
 import {Subscription} from "rxjs";
 import { LaureatsServices} from '../../services/laureats.services';
+import {HttpClient} from '@angular/common/http';
 
 
 @Component({
@@ -20,10 +21,15 @@ export class MapComponent implements OnInit{
   public currentLat = 33.35;
   public erreur = 0;
 
-  public laureatsListSubscription : Subscription;
-  public laureatsList : any[];
+  public listGraphiquesGrandEchel: any[];
+  public listGraphiquesPetitEchelSymbol: any[];
+  public listGraphiquesPetitEchelLabel: any[];
 
-  constructor(public laureatsServices : LaureatsServices) {
+  public laureatsListSubscription : Subscription;
+  public laureatsList = [];
+  public laureatsProvinceList = [];
+
+  constructor( public httpClient: HttpClient,public laureatsServices : LaureatsServices) {
 
 
     this.getGeo();
@@ -40,6 +46,22 @@ export class MapComponent implements OnInit{
     );
 
 
+    this.httpClient.get("http://localhost:9090/requestAny/" +
+      "select%20ST_X(ST_Centroid(geom))%20as%20long,%20ST_Y(ST_Centroid(geom))%20as%20lat,%20nom_provin%20as%20nomprovince,%20count(nom_provin)%20" +
+      "from%20provinceswgs%20,%20utilisateur%20,%20organisme%20" +
+      "where%20utilisateur.reforganisme%20=%20organisme.id%20and%20organisme.province%20=%20provinceswgs.nom_provin%20" +
+      "group%20by%20ST_X(ST_Centroid(geom)),%20ST_Y(ST_Centroid(geom)),%20nom_provin")
+      .subscribe( (data) => {
+
+        this.laureatsProvinceList = (data as any).features;
+
+      }, (err) => {
+
+      });
+
+
+
+
 
 
 
@@ -51,11 +73,12 @@ export class MapComponent implements OnInit{
     // Reference: https://ionicframework.com/docs/api/platform/Platform/#ready
 
     // Load the ArcGIS API for JavaScript modules
-    const [Map, MapView, Graphic,Locate]:any = await loadModules([
+    const [Map, MapView, Graphic,Locate,watchUtils]:any = await loadModules([
       'esri/Map',
       'esri/views/MapView',
       'esri/Graphic',
-      'esri/widgets/Locate'
+      'esri/widgets/Locate',
+      "esri/core/watchUtils"
     ])
       .catch(err => {
         console.error("ArcGIS: ", err);
@@ -65,7 +88,7 @@ export class MapComponent implements OnInit{
 
 
     let map = new Map({
-      basemap: 'hybrid'
+      basemap: 'topo'
     });
 
     console.log("la map a bien été chargé");
@@ -83,6 +106,9 @@ export class MapComponent implements OnInit{
     if(this.laureatsList && this.laureatsList.length){
       console.log("----------------------------1---------------------------");
       console.log("-------------------------------------------------------");
+
+      //on vide les graphiques
+      this.listGraphiquesGrandEchel = [];
 
       for(let i=0;i<this.laureatsList.length;i++) {
         console.log("---------------------2----------------------------------");
@@ -154,26 +180,174 @@ export class MapComponent implements OnInit{
               Prenom: this.laureatsList[i].prenom,
               Organisme: this.laureatsList[i].nomorganisme,
               Filiere: this.laureatsList[i].filiere,
+              Promotion: this.laureatsList[i].promotion,
+              Province: this.laureatsList[i].province,
             },
             popupTemplate: {  // autocasts as new PopupTemplate()
               title: "{Nom} {Prenom}",
-              content: [{
-                type: "fields",
-                fieldInfos: [{
-                  fieldName: "Nom"
-                }, {
-                  fieldName: "Prenom"
-                }, {
-                  fieldName: "Organisme"
-                }, {
-                  fieldName: "Filiere"
-                }]
-              }]
+              content: [
+
+                          {
+                            type: "media",
+                            mediaInfos: [
+                              {
+                                title: "<br><b>Infos Complémentaires</b>",
+                                type: "image",
+                                value: {
+                                  sourceURL: this.laureatsList[i].photo
+                                }
+                              }
+                            ] // fin mediaInfos
+                          }// le premier contenu c'est l'image
+
+                            ,// un autre type de contenu
+
+                          {
+                            type: "fields",
+                            fieldInfos: [{
+                              fieldName: "Nom"
+                            }, {
+                              fieldName: "Prenom"
+                            }, {
+                              fieldName: "Organisme"
+                            }, {
+                              fieldName: "Filiere"
+                            }, {
+                              fieldName: "Promotion"
+                            }, {
+                              fieldName: "Province"
+                            }]
+                          }
+
+                    ]//le tableau des differents type de contenu de popup : media, données attributaire , graphe statitstique ...
+
+                  }//fin popupTemplate
+
+
+
+          }); // fin objet graphique
+
+          this.listGraphiquesGrandEchel.push(pointGraphic);
+
+          mapView.graphics.add(pointGraphic);
+
+
+        }//fin if
+      }
+
+    }
+
+    if(this.laureatsProvinceList && this.laureatsProvinceList.length){
+      console.log("----------------------------1---------------------------");
+      console.log("-------------------------------------------------------");
+
+      //on vide les graphiques
+      this.listGraphiquesPetitEchelSymbol = [];
+      this.listGraphiquesPetitEchelLabel = [];
+
+      for(let i=0;i<this.laureatsProvinceList.length;i++) {
+        console.log("---------------------2----------------------------------");
+
+
+
+        if (this.laureatsProvinceList[i] && this.laureatsProvinceList[i].long && this.laureatsProvinceList[i].lat) {
+
+          //console.log(this.laureatsList[i].photo);
+
+          let symbol;
+
+
+
+          symbol = {
+            type: "text",  // autocasts as new TextSymbol()
+            color: "white",
+            haloColor: "black",
+            haloSize: "1px",
+            text: this.laureatsProvinceList[i].count,
+            xoffset: 0,
+            yoffset: -3,
+            font: {  // autocast as new Font()
+              size: 7,
+              family: "sans-serif",
+              weight: "bold"
+            }
+          };
+
+
+
+          let pointGraphic = new Graphic({
+            geometry: {
+              type: "point", // autocasts as new Point()
+              longitude: Number(this.laureatsProvinceList[i].long),
+              latitude:  Number(this.laureatsProvinceList[i].lat)
+            },
+
+            symbol : symbol
+
+            ,
+            attributes: {
+              Province: this.laureatsProvinceList[i].nomprovince,
+              Long: this.laureatsProvinceList[i].long,
+              Lat: this.laureatsProvinceList[i].lat,
+              Nombre: this.laureatsProvinceList[i].count,
+
+            },
+            popupTemplate: {  // autocasts as new PopupTemplate()
+              title: "{Province}",
+              content: [
+
+                {
+                  type: "fields",
+                  fieldInfos: [{
+                    fieldName: "Nom"
+                  }, {
+                    fieldName: "Long"
+                  }, {
+                    fieldName: "Lat"
+                  }, {
+                    fieldName: "Nombre"
+                  }]
+                }
+
+              ]//le tableau des differents type de contenu de popup : media, données attributaire , graphe statitstique ...
+
+            }//fin popupTemplate
+
+
+
+          }); // fin objet graphique
+
+          let pointGraphic2 = new Graphic({
+            geometry: {
+              type: "point", // autocasts as new Point()
+              longitude: Number(this.laureatsProvinceList[i].long),
+              latitude:  Number(this.laureatsProvinceList[i].lat)
+            },
+
+            symbol : {
+              type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+              color: [255, 0, 255],
+              outline: { // autocasts as new SimpleLineSymbol()
+                color: [255, 255, 255],
+                width: 2
+              }
+            },
+
+
+            attributes: {
+              Nom: this.laureatsProvinceList[i].nomprovince,
+              Long: this.laureatsProvinceList[i].long,
+              Lat: this.laureatsProvinceList[i].lat
             }
 
 
-          });
 
+          }); // fin objet graphique
+
+          this.listGraphiquesPetitEchelSymbol.push(pointGraphic);
+          this.listGraphiquesPetitEchelLabel.push(pointGraphic2);
+
+          mapView.graphics.add(pointGraphic2);
           mapView.graphics.add(pointGraphic);
 
 
@@ -185,14 +359,69 @@ export class MapComponent implements OnInit{
 
 
 
-
     let locateBtn = new Locate({
       view: mapView
     });
 
+
+
+
     // Add the locate widget to the top left corner of the view
     mapView.ui.add(locateBtn, {
       position: "top-left"
+    });
+
+
+
+    let G = this.listGraphiquesGrandEchel;
+    let PS = this.listGraphiquesPetitEchelSymbol;
+    let PL = this.listGraphiquesPetitEchelLabel;
+
+    // Watch view's stationary property for becoming true.
+    watchUtils.whenTrue(mapView, "stationary", function() {
+      // Get the new center of the view only when view is stationary.
+
+
+
+      console.log(mapView.zoom);
+
+      console.log(mapView.graphics);
+
+      if( G != null && PS != null){
+
+        if(mapView.zoom >= 7 ){
+
+          for(let i = 0; i < G.length; i++){
+            mapView.graphics.add(G[i]);
+          }
+
+          for(let i = 0; i < PS.length; i++){
+            mapView.graphics.remove(PS[i]);
+            mapView.graphics.remove(PL[i]);
+          }
+
+
+        }
+
+        else{
+
+          for(let i = 0; i < PS.length; i++){
+            mapView.graphics.add(PL[i]);
+            mapView.graphics.add(PS[i]);
+
+          }
+
+          for(let i = 0; i < G.length; i++){
+            mapView.graphics.remove(G[i]);
+          }
+
+        }
+
+      }
+
+
+
+
     });
 
 

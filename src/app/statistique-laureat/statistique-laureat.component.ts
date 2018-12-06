@@ -56,10 +56,11 @@ export class StatistiqueLaureatComponent implements OnInit {
 
 
     this.httpClient.get("http://localhost:9090/requestAny/" +
-      "select%20count(*)%20as%20y,%20filiere%20as%20label%20" +
+      "select%20count(*)%20as%20y,%20genre%20as%20label%20" +
       "from%20utilisateur%20" +
-      "group%20by%20filiere").subscribe( data => {
+      "group%20by%20genre").subscribe( data => {
 
+        console.log(data);
 
       chart = new CanvasJS.Chart("chartContainer1", {
         theme: "light2",
@@ -68,6 +69,7 @@ export class StatistiqueLaureatComponent implements OnInit {
         title:{
           text: "Nombre d'inscrit par filière"
         },
+
         data: [{
           type: "pie",
           showInLegend: true,
@@ -76,12 +78,8 @@ export class StatistiqueLaureatComponent implements OnInit {
           dataPoints: (data as any).features.map( obj => {
             let objIntermediaire = {};
             objIntermediaire["y"] = Number(obj["y"]);
-            if(obj["label"] != ""){
-              objIntermediaire["name"] = obj["label"];
-            }
-            else{
-              objIntermediaire["name"] = "autre";
-            }
+            objIntermediaire["name"] = obj["label"];
+
             return objIntermediaire;
           })
         }]
@@ -94,20 +92,26 @@ export class StatistiqueLaureatComponent implements OnInit {
     },err => {});
 
 
+
     this.httpClient.get("http://localhost:9090/requestAny/" +
-      "select%20count(*)%20as%20y,%20genre%20as%20label%20" +
+      "select%20count(*)%20as%20y,%20filiere%20as%20label%20" +
       "from%20utilisateur%20" +
-      "group%20by%20genre").subscribe( data => {
+      "group%20by%20filiere").subscribe( data => {
 
 
       chart = new CanvasJS.Chart("chartContainer2", {
         animationEnabled: true,
+        theme: "light2",
         exportEnabled: true,
         axisY:{
-          title: "Nombre inscrit"
+          title: "Nombre inscrit",
+
         },
         axisX:{
-          title: "Genre"
+          title: "Genre",
+          titleFontSize: 20,
+          labelFontSize: 14
+
         },
         title: {
           text: "Nombre d'inscrit selon le genre"
@@ -117,6 +121,7 @@ export class StatistiqueLaureatComponent implements OnInit {
           dataPoints: (data as any).features.map( obj => {
             let objIntermediaire = {};
             objIntermediaire["y"] = Number(obj["y"]);
+
             objIntermediaire["label"] = obj["label"];
             return objIntermediaire;
           })
@@ -127,30 +132,34 @@ export class StatistiqueLaureatComponent implements OnInit {
 
     },err => {});
 
+
+
     this.httpClient.get("http://localhost:9090/requestAny/" +
       "select%20count(*)%20as%20y,%20organisme.secteur%20as%20label%20" +
       "from%20utilisateur,%20organisme%20where%20utilisateur.reforganisme%20=%20organisme.id%20" +
       "group%20by%20organisme.secteur").subscribe( data => {
 
 
-      chart = new CanvasJS.Chart("chartContainer3", {
+      console.log(data);
+
+      chart = new CanvasJS.Chart("chartContainer4", {
+        theme: "light2",
         animationEnabled: true,
         exportEnabled: true,
-        axisY:{
-          title: "Nombre inscrit"
+        title:{
+          text: "Nombre d'inscrit par filière"
         },
-        axisX:{
-          title: "Secteur"
-        },
-        title: {
-          text: "Nombre d'inscrit selon le secteur"
-        },
+
         data: [{
-          type: "column",
+          type: "pie",
+          showInLegend: true,
+          toolTipContent: "<b>{name}</b>: {y} (#percent%)",
+          indexLabel: "{name} - #percent%",
           dataPoints: (data as any).features.map( obj => {
             let objIntermediaire = {};
             objIntermediaire["y"] = Number(obj["y"]);
-            objIntermediaire["label"] = obj["label"];
+            objIntermediaire["name"] = obj["label"];
+
             return objIntermediaire;
           })
         }]
@@ -187,26 +196,33 @@ export class StatistiqueLaureatComponent implements OnInit {
 
         console.log(data);
 
-        chart = new CanvasJS.Chart("chartContainer4", {
+        chart = new CanvasJS.Chart("chartContainer3", {
           theme: "light2",
           animationEnabled: true,
           exportEnabled: true,
           title:{
             text: "Classement des organismes"
           },
+          axisY:{
+            title: "Nombre inscrit",
+
+          },
+          axisX:{
+            title: "Organisme",
+            titleFontSize: 20,
+            labelFontSize: 14
+
+          },
           data: [{
-            type: "pie",
-            showInLegend: true,
-            toolTipContent: "<b>{name}</b>: {y} (#percent%)",
-            indexLabel: "{name} - #percent%",
+            type: "column",
             dataPoints: (data as any).map( obj => {
               let objIntermediaire = {};
               objIntermediaire["y"] = Number(obj["y"]);
               if(obj["label"] != ""){
-                objIntermediaire["name"] = obj["label"];
+                objIntermediaire["label"] = obj["label"];
               }
               else{
-                objIntermediaire["name"] = "autre";
+                objIntermediaire["label"] = "autre";
               }
               return objIntermediaire;
             })
@@ -251,6 +267,7 @@ export class StatistiqueLaureatComponent implements OnInit {
 
       console.log(dataPoints);
       chart = new CanvasJS.Chart("chartContainer5", {
+        theme: "light2",
         zoomEnabled: true,
         animationEnabled: true,
         exportEnabled: true,

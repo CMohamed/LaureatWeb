@@ -22,14 +22,14 @@ export class SafePipe implements PipeTransform {
 })
 export class AccueilComponent implements OnInit {
 
+
+
   //url : string = "assets/accueilEhpt.html";
   url : string = "http://192.168.43.252:8080/";
 
   constructor() { }
 
   ngOnInit() {
-
-
 
   }
 
