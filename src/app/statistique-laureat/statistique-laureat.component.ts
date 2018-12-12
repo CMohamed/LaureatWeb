@@ -67,7 +67,7 @@ export class StatistiqueLaureatComponent implements OnInit {
         animationEnabled: true,
         exportEnabled: true,
         title:{
-          text: "Nombre d'inscrit par filière"
+          text: "Nombre d'inscrit par genre"
         },
 
         data: [{
@@ -114,7 +114,7 @@ export class StatistiqueLaureatComponent implements OnInit {
 
         },
         title: {
-          text: "Nombre d'inscrit selon le genre"
+          text: "Nombre d'inscrit selon la filière"
         },
         data: [{
           type: "column",
@@ -201,7 +201,7 @@ export class StatistiqueLaureatComponent implements OnInit {
           animationEnabled: true,
           exportEnabled: true,
           title:{
-            text: "Classement des organismes"
+            text: "Classement des organismes par nombre d'inscrit"
           },
           axisY:{
             title: "Nombre inscrit",
@@ -272,13 +272,13 @@ export class StatistiqueLaureatComponent implements OnInit {
         animationEnabled: true,
         exportEnabled: true,
         title: {
-          text: "Nombre d'inscript par promotion"
+          text: "Nombre d'inscript par mois"
         },
         subtitles:[{
           text: "Zoomez pour plus de détail"
         }],
         axisX:{
-          title : "promotion",
+          title : "année",
           interval: 1,
           intervalType: "year",
           valueFormatString: "#"

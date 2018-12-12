@@ -33,6 +33,9 @@ export class LaureatsComponent implements OnInit {
   public laureatsList : any[];
   public organismesListSubscription : Subscription;
   public organismesList : any[];
+  public Filieres = []; //c'est une lsite qui ocntiendra le nom des filiere abrégé
+  public Provinces =[];
+
   motCle: string = "";
   size: number = 4;
   quota = 2; //c'est le nombre maximal d'enregistrements qu'on peut récupérer à partir d'une requet http
@@ -44,7 +47,7 @@ export class LaureatsComponent implements OnInit {
 
 
   Secteurs = ['prive', 'public'];
-  Filieres = ['gi','sig','gc','ge','ive','ihe','meteo'];
+
   Promotions :Array<number> = new Array<number>();
 
 
@@ -69,6 +72,38 @@ export class LaureatsComponent implements OnInit {
               public organismeService: OrganismesServices,
               public laureatservice: LaureatsServices,
               public router: Router) {
+
+    this.httpClient.get("http://localhost:9090/requestAny/" +
+      "select%20abreviationfiliere%20as%20nomfiliere%20" +
+      "from%20filieres")
+      .subscribe( (data) => {
+
+          this.Filieres =[];
+
+          for(let i = 0; i< (data as any).features.length;i++){
+            this.Filieres.push((data as any).features[i].nomfiliere);
+          }
+
+    }, (err) => {
+
+    });
+
+    this.httpClient.get("http://localhost:9090/requestAny/" +
+      "select%20nom_provin%20as%20nomprovince%20" +
+      "from%20provinceswgs")
+      .subscribe( (data) => {
+
+        this.Provinces =[];
+
+        for(let i = 0; i< (data as any).features.length;i++){
+          this.Provinces.push((data as any).features[i].nomprovince);
+        }
+
+      }, (err) => {
+
+      });
+
+
 
     this.organismesListSubscription = this.organismeService.organismeList$.subscribe(
       (organismes) => {

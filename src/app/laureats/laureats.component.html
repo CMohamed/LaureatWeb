@@ -37,7 +37,7 @@
       <mat-form-field>
         <mat-select placeholder="Province" [(ngModel)] = "province">
           <mat-option value="" >Province</mat-option>
-          <mat-option *ngFor="let prov of ['Casablanca','Rabat','Guelmim']" [value]="prov">{{prov}}</mat-option>
+          <mat-option *ngFor="let prov of Provinces" [value]="prov">{{prov}}</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -110,7 +110,7 @@
   <mat-form-field>
     <mat-select placeholder="Province" [(ngModel)] = "province">
       <mat-option value="" >Province</mat-option>
-      <mat-option *ngFor="let prov of ['Casablanca','Rabat','Guelmim']" [value]="prov">{{prov}}</mat-option>
+      <mat-option *ngFor="let prov of Provinces" [value]="prov">{{prov}}</mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -146,11 +146,11 @@
             <img src="{{element.photo}}" style="width: auto; height: 100%;">
           </div>
           <div class="example-element-description">
-            Tél Number : {{element.tel}}
+            Tél : {{element.telephone}}
             <br>
-            {{element.description}}
+
             <br>
-            <span class="example-element-description-attribution"> -- More </span>
+            <span class="example-element-description-attribution"> {{element.description}} </span>
           </div>
         </div>
       </td>
