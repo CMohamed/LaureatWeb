@@ -47,10 +47,10 @@ export class MapComponent implements OnInit{
 
 
     this.httpClient.get("http://localhost:9090/requestAny/" +
-      "select%20ST_X(ST_Centroid(geom))%20as%20long,%20ST_Y(ST_Centroid(geom))%20as%20lat,%20nom_provin%20as%20nomprovince,%20count(nom_provin)%20" +
+      "select%20ST_X(ST_Centroid(provinceswgs.geom))%20as%20long,%20ST_Y(ST_Centroid(provinceswgs.geom))%20as%20lat,%20nom_provin%20as%20nomprovince,%20count(nom_provin)%20" +
       "from%20provinceswgs%20,%20utilisateur%20,%20organisme%20" +
       "where%20utilisateur.reforganisme%20=%20organisme.id%20and%20organisme.province%20=%20provinceswgs.nom_provin%20" +
-      "group%20by%20ST_X(ST_Centroid(geom)),%20ST_Y(ST_Centroid(geom)),%20nom_provin")
+      "group%20by%20ST_X(ST_Centroid(provinceswgs.geom)),%20ST_Y(ST_Centroid(provinceswgs.geom)),%20nom_provin")
       .subscribe( (data) => {
 
         this.laureatsProvinceList = (data as any).features;
@@ -111,7 +111,7 @@ export class MapComponent implements OnInit{
       this.listGraphiquesGrandEchel = [];
 
       for(let i=0;i<this.laureatsList.length;i++) {
-        console.log("---------------------2----------------------------------");
+        console.log("---------------------2-LaureatList---------------------------------");
 
 
 
@@ -122,6 +122,8 @@ export class MapComponent implements OnInit{
           let symbol;
 
           if(this.laureatsList[i].photo != "" && this.laureatsList[i].photo != null){
+
+            console.log(this.laureatsList[i].nom);
 
             symbol= {
               type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
@@ -246,7 +248,7 @@ export class MapComponent implements OnInit{
       this.listGraphiquesPetitEchelLabel = [];
 
       for(let i=0;i<this.laureatsProvinceList.length;i++) {
-        console.log("---------------------2----------------------------------");
+        console.log("---------------------2-LaureatsProvincesList---------------------------------");
 
 
 
@@ -299,7 +301,7 @@ export class MapComponent implements OnInit{
                 {
                   type: "fields",
                   fieldInfos: [{
-                    fieldName: "Nom"
+                    fieldName: "Province"
                   }, {
                     fieldName: "Long"
                   }, {
@@ -405,15 +407,17 @@ export class MapComponent implements OnInit{
 
         else{
 
+          for(let i = 0; i < G.length; i++){
+            mapView.graphics.remove(G[i]);
+          }
+
           for(let i = 0; i < PS.length; i++){
             mapView.graphics.add(PL[i]);
             mapView.graphics.add(PS[i]);
 
           }
 
-          for(let i = 0; i < G.length; i++){
-            mapView.graphics.remove(G[i]);
-          }
+
 
         }
 
