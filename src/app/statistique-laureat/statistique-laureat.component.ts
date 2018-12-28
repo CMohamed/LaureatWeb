@@ -33,7 +33,7 @@ export class StatistiqueLaureatComponent implements OnInit {
         "and%20etat%20=%20'accept%C3%A9'").subscribe( data => {
 
 
-        this.moyenneParMois = parseInt((Number((data as any).features[0].nombreinscription) / (Number((data as any).features[0].dureesite)/12)).toString());
+        this.moyenneParMois = parseFloat((Number((data as any).features[0].nombreinscription) / (Number((data as any).features[0].dureesite)/12)).toString());
         console.log(this.moyenneParMois);
       });
 
