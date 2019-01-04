@@ -37,9 +37,9 @@ export class MapComponent implements OnInit {
     this.laureatsListSubscription = this.laureatsServices.laureatsList$.subscribe(
       (laureatsImported: any[]) => {
 
-        console.log(laureatsImported);
+        //console.log(laureatsImported);
         this.laureatsList = laureatsImported;
-        console.log('this geo a commencé');
+        //console.log('this geo a commencé');
         this.getGeo();
 
 
@@ -79,14 +79,14 @@ export class MapComponent implements OnInit {
         console.error('ArcGIS: ', err);
       });
 
-    console.log('Starting up ArcGIS map');
+    //console.log('Starting up ArcGIS map');
 
 
     let map = new Map({
       basemap: 'topo'
     });
 
-    console.log('la map a bien été chargé');
+    //console.log('la map a bien été chargé');
 
     let mapView = new MapView({
       // create the map view at the DOM element in this component
@@ -358,9 +358,9 @@ export class MapComponent implements OnInit {
       // Get the new center of the view only when view is stationary.
 
 
-      console.log(mapView.zoom);
+      //console.log(mapView.zoom);
 
-      console.log(mapView.graphics);
+      //console.log(mapView.graphics);
 
       if (G != null && PS != null) {
 

@@ -6,7 +6,7 @@
 
 <mat-grid-list cols="4" rowHeight="100px">
 
-  <mat-grid-tile colspan="4" rowspan="2">
+  <mat-grid-tile *ngIf="currentUser && currentUser.role=='admin'" colspan="4" rowspan="2">
 
     <mat-card style="width: 100%;">
 
@@ -30,8 +30,11 @@
                 <i class="glyphicon glyphicon-download"></i>
               </div>
               <div class="dash-box-body">
-                <span class="dash-box-count">{{moyenneParMois.toFixed(2)}}</span>
-                <span class="dash-box-title">Moyenne des inscrits par mois</span>
+                <span *ngIf="moyenneParMois<1" class="dash-box-count">{{(moyenneParMois*12).toFixed(0)}}</span>
+                <span *ngIf="moyenneParMois>=1" class="dash-box-count">{{moyenneParMois.toFixed(0)}}</span>
+
+                <span *ngIf="moyenneParMois<1" class="dash-box-title">Inscrits par an</span>
+                <span *ngIf="moyenneParMois>=1" class="dash-box-title">Inscrits par mois</span>
               </div>
 
 
@@ -59,8 +62,26 @@
 
   </mat-grid-tile>
 
+  <br>
 
-  <mat-grid-tile colspan="2" rowspan="6">
+  <mat-grid-tile *ngIf="currentUser && currentUser.role=='admin'" colspan="4" rowspan="6">
+
+
+    <mat-card style="width: 100%;">
+
+
+      <div id="chartContainer5" style="height: 100%; width: 100%;">
+
+      </div>
+
+    </mat-card>
+
+  </mat-grid-tile>
+
+  <br>
+
+
+  <mat-grid-tile [colspan]="sizeUnitee" rowspan="6">
 
     <mat-card style="width: 100%;">
 
@@ -75,7 +96,7 @@
 
   </mat-grid-tile>
 
-  <mat-grid-tile colspan="2" rowspan="6">
+  <mat-grid-tile [colspan]="sizeUnitee" rowspan="6">
 
 
 
@@ -91,7 +112,7 @@
 
   </mat-grid-tile>
 
-  <mat-grid-tile colspan="2" rowspan="6">
+  <mat-grid-tile [colspan]="sizeUnitee" rowspan="6">
 
 
 
@@ -107,7 +128,7 @@
 
   </mat-grid-tile>
 
-  <mat-grid-tile colspan="2" rowspan="6">
+  <mat-grid-tile [colspan]="sizeUnitee" rowspan="6">
 
 
 
@@ -124,20 +145,7 @@
   </mat-grid-tile>
 
 
-  <mat-grid-tile colspan="4" rowspan="6">
 
-
-
-    <mat-card style="width: 100%;">
-
-
-      <div id="chartContainer5" style="height: 100%; width: 100%;">
-
-      </div>
-
-    </mat-card>
-
-  </mat-grid-tile>
 
 
 </mat-grid-list>

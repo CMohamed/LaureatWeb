@@ -1,4 +1,4 @@
-<mat-card role="group">
+<mat-card *ngIf="currentUser!=null && ( currentUser.role=='admin' || currentUser.role=='mdb')"  role="group">
 
   <br>
   <br>
@@ -9,7 +9,9 @@
 
   <br>
 
-  <div *ngFor="let avancement of avancementsList">
+
+
+  <div  *ngFor="let avancement of avancementsList">
 
     <mat-card class="example-card" >
       <mat-card-header>
@@ -81,6 +83,28 @@
   <br>
 
 
+</mat-card>
+
+<mat-card *ngIf="!currentUser || ( currentUser.role!='admin' && currentUser.role!='mdb')" >
+
+  <br>
+  <br>
+
+
+  <h1 style="text-align: center">Gestion des laureats:</h1>
+  <br>
+
+  <mat-card class="example-card" >
+
+    <mat-card-content>
+      <p>   Vous devez d'abord vous connecter en tant qu'administrateur ou membre du bureau des lauréats.</p>
+    </mat-card-content>
+
+
+
+  </mat-card>
+
+  <br>
 </mat-card>
 
 

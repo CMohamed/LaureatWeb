@@ -29,20 +29,27 @@ export class LoginComponent implements OnInit {
     this.authentificationServices.emit();
     this.currentUserSubscription = this.authentificationServices.currentAuthentified$.subscribe(data => {
 
-      this.currentUser = data;
+      if(this.currentUser != data)
+      {
 
-      if ( this.currentUser != null){
-        this.openSnackBar("CMohamed", "Welcome");
-        this.router.navigate(['app-admin']);
-      }else{
-        //this.email='';
-        //this.password='';
-        this.openSnackBar("email or pass is ", "Wrong");
-        //this.router.navigate(['app-admin']);
+        this.currentUser = data;
+
+        if ( this.currentUser != null){
+          this.openSnackBar(data.nom, "Bienvenue");
+          this.router.navigate(['accueil']);
+        }else{
+          //this.email='';
+          //this.password='';
+          this.openSnackBar("email ou mdp non valide ", "Réessayer");
+          //this.router.navigate(['app-admin']);
+        }
+
       }
 
 
-      })
+
+
+      });
   }
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {

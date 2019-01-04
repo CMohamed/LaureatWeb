@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import * as CanvasJS from '../canvasjs.min';
 import {HttpClient} from '@angular/common/http';
 //var CanvasJS = require('./canvasjs.min');
+
+import {AuthentificationServices} from '../../services/authentification.services';
+import {Subscription} from 'rxjs';
+
 
 @Component({
   selector: 'app-statistique-laureat',
@@ -15,7 +19,21 @@ export class StatistiqueLaureatComponent implements OnInit {
   public moyenneParMois : number;
   public nombreOrganisme : number;
 
-  constructor(public httpClient: HttpClient) {
+  public sizeUnitee = 2;
+
+  public currentUserSubscription : Subscription;
+  public currentUser: any;
+
+  constructor(public authentificationServices:AuthentificationServices, public httpClient: HttpClient) {
+
+    //this.authentificationServices.emit();
+    this.currentUserSubscription = this.authentificationServices.currentAuthentified$.subscribe(data => {
+
+      this.currentUser = data;
+
+
+    });
+    this.authentificationServices.emit();
 
     this.httpClient.get("http://localhost:9090/requestAny/" +
       "select%20count(*)%20" +
@@ -33,7 +51,13 @@ export class StatistiqueLaureatComponent implements OnInit {
         "where%20utilisateur.id%20=%20avancement.refutilisateur%20" +
         "and%20etat%20=%20'accept%C3%A9'").subscribe( data => {
 
-        this.moyenneParMois = parseFloat((Number((data as any).features[0].nombreinscription) / (Number((data as any).features[0].dureesite)/12)).toString());
+          console.log(Number((data as any).features[0].dureesite)); //duree en jours
+          console.log(Number((data as any).features[0].nombreinscription));
+
+
+        this.moyenneParMois = parseFloat((Number((data as any).features[0].nombreinscription) / (Number((data as any).features[0].dureesite)/30)).toString());
+
+
         console.log(this.moyenneParMois);
       });
 
@@ -63,7 +87,9 @@ export class StatistiqueLaureatComponent implements OnInit {
         animationEnabled: true,
         exportEnabled: true,
         title:{
-          text: "Nombre d'inscrit par genre"
+          text: "Nombre d'inscrit par genre",
+          fontSize: 30,
+          fontFamily: "arial"
         },
 
         data: [{
@@ -99,7 +125,8 @@ export class StatistiqueLaureatComponent implements OnInit {
         exportEnabled: true,
         axisY:{
           title: "Nombre inscrit",
-
+          titleFontSize: 20,
+          labelFontSize: 14
         },
         axisX:{
           title: "Genre",
@@ -108,7 +135,9 @@ export class StatistiqueLaureatComponent implements OnInit {
 
         },
         title: {
-          text: "Nombre d'inscrit selon la filière"
+          text: "Nombre d'inscrit selon la filière",
+          fontSize: 30,
+          fontFamily: "arial"
         },
         data: [{
           type: "column",
@@ -141,7 +170,9 @@ export class StatistiqueLaureatComponent implements OnInit {
         animationEnabled: true,
         exportEnabled: true,
         title:{
-          text: "Nombre d'inscrit par filière"
+          text: "Nombre d'inscrit par filière",
+          fontSize: 30,
+          fontFamily: "arial"
         },
 
         data: [{
@@ -195,10 +226,14 @@ export class StatistiqueLaureatComponent implements OnInit {
           animationEnabled: true,
           exportEnabled: true,
           title:{
-            text: "Classement des organismes par nombre d'inscrit"
+            text: "Classement des organismes par nombre d'inscrit",
+            fontSize: 30,
+            fontFamily: "arial"
           },
           axisY:{
             title: "Nombre inscrit",
+            titleFontSize: 20,
+            labelFontSize: 14
 
           },
           axisX:{
@@ -258,7 +293,9 @@ export class StatistiqueLaureatComponent implements OnInit {
         animationEnabled: true,
         exportEnabled: true,
         title: {
-          text: "Nombre d'inscriptions par promotions"
+          text: "Nombre d'inscriptions par promotions",
+          fontSize: 30,
+          fontFamily: "arial"
         },
         subtitles:[{
           text: "Zoomez pour plus de détail"
@@ -267,12 +304,16 @@ export class StatistiqueLaureatComponent implements OnInit {
           title : "année",
           interval: 1,
           intervalType: "year",
-          valueFormatString: "#"
+          valueFormatString: "#",
+          titleFontSize: 20,
+          labelFontSize: 14
         },
         axisY:{
           title : "nombre inscrit",
           intervalType: "number",
-          valueFormatString: "#"
+          valueFormatString: "#",
+          titleFontSize: 20,
+          labelFontSize: 14
         },
         data: [
           {
@@ -294,6 +335,23 @@ export class StatistiqueLaureatComponent implements OnInit {
 
     });
 
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+
+    console.log(window.innerWidth);
+    if(window.innerWidth < 1000 )
+    {
+      this.sizeUnitee = 4;
+    }
+    else
+      {
+        this.sizeUnitee = 2;
+
+
+      }
+    //this.sizeUnitee = window.innerWidth;
   }
 
 }

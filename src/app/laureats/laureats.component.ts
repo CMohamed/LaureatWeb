@@ -115,15 +115,15 @@ export class LaureatsComponent implements OnInit {
     this.laureatsListSubscription = this.laureatservice.laureatsList$.subscribe(
       (laureatsImported: any[]) => {
 
-        console.log(laureatsImported);
+        //console.log(laureatsImported);
         this.laureatsList = laureatsImported;
 
         this.dataSource = new MatTableDataSource<Laureat>(this.laureatsList);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
 
-        console.log("le datasource :");
-        console.log(this.dataSource);
+        //console.log("le datasource :");
+        //console.log(this.dataSource);
 
 
       }

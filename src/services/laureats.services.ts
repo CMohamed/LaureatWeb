@@ -25,17 +25,17 @@ export class LaureatsServices {
   //permet d'indiquer qu'une mise à jour au niveau du service est necessaire
   emitList() {
     this.laureatsList$.next(this.laureatsList);
-    console.log(this.laureatsList);
+    //console.log(this.laureatsList);
   }
 
 
 
   public nouveauFiltre(genre,filiere,province,organisme,secteur,promotion,quota){
 
-    let requeteFiltre = "http://localhost:9090/requestAny/select%20nom,email,prenom,photo,organisme.long,organisme.lat,filiere,promotion,organisme.secteur,genre,organisme.province,nomorganisme%20from%20utilisateur,organisme%20";
+    let requeteFiltre = "http://localhost:9090/requestAny/select%20nom,telephone,email,prenom,photo,organisme.long,organisme.lat,filiere,promotion,organisme.secteur,genre,organisme.province,nomorganisme%20from%20utilisateur,organisme%20";
     let clauseWhere = "";
 
-    console.log(secteur == "");
+    //console.log(secteur == "");
 
     if(filiere != ""){
       clauseWhere = clauseWhere + "filiere%20='" + filiere + "'%20and%20";
@@ -86,7 +86,7 @@ export class LaureatsServices {
     }
 
 
-    this.httpClient.get(requeteFiltre.replace("select%20nom,email,prenom,photo,organisme.long,organisme.lat,filiere,promotion,organisme.secteur,genre,organisme.province,nomorganisme","select%20count(*)%20"))
+    this.httpClient.get(requeteFiltre.replace("select%20nom,telephone,email,prenom,photo,organisme.long,organisme.lat,filiere,promotion,organisme.secteur,genre,organisme.province,nomorganisme","select%20count(*)%20"))
       .subscribe(data1 => {
 
 
@@ -102,9 +102,9 @@ export class LaureatsServices {
 
           this.httpClient.get(requeteFilitreI)
             .subscribe(data2 => {
-              console.log((data2 as any).features);
+              //console.log((data2 as any).features);
               this.laureatsList = this.laureatsList.concat((data2 as any).features);
-              console.log(this.laureatsList);
+              //console.log(this.laureatsList);
               this.emitList();
 
 

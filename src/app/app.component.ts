@@ -29,34 +29,7 @@ export class AppComponent {
 
 
     console.log(this.currentUser);
-    this.router.events.subscribe((event: Event) => {
 
-
-      switch (true) {
-        case event instanceof NavigationStart: {
-
-          console.log("NavigationStart");
-
-          this.loading = true;
-          break;
-        }
-
-        case event instanceof NavigationEnd:
-        case event instanceof NavigationCancel:
-        case event instanceof NavigationError: {
-
-          console.log("NavigationError or NavigationCancel or NavigationEnd");
-
-          this.loading = false;
-          break;
-        }
-        default: {
-          console.log("Navigation unknown");
-
-          break;
-        }
-      }
-    });
 
     this.authentificationServices.emit();
 

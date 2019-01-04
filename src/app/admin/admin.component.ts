@@ -3,6 +3,7 @@ import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 
 
+import {AuthentificationServices} from '../../services/authentification.services';
 import {AvancementServices} from '../../services/avancements.services';
 
 
@@ -13,6 +14,9 @@ import {AvancementServices} from '../../services/avancements.services';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+
+  public currentUserSubscription : Subscription;
+  public currentUser: any;
 
   public avancementsListSubscription : Subscription;
   public avancementsList : any[];
@@ -33,9 +37,19 @@ export class AdminComponent implements OnInit {
   avancementDetail = null;
 
 
-  constructor(public avancementServices : AvancementServices) {
+  constructor(public authentificationServices:AuthentificationServices, public avancementServices : AvancementServices) {
 
-        this.avancementsListSubscription = this.avancementServices.avancementsList$.subscribe(
+        //this.authentificationServices.emit();
+        this.currentUserSubscription = this.authentificationServices.currentAuthentified$.subscribe(data => {
+          this.currentUser = data;
+          console.log(data);
+
+
+        });
+    this.authentificationServices.emit();
+
+
+    this.avancementsListSubscription = this.avancementServices.avancementsList$.subscribe(
           (avancementsImported: any[]) => {
 
             this.avancementsList = avancementsImported;
