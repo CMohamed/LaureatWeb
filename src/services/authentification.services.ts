@@ -40,27 +40,28 @@ export class AuthentificationServices {
         if((data as any) && (data as any).features && (data as any).features.count != 0){
 
           this.currentAuthentified = (data as any).features[0];
-          console.log("------------ Authentification service ------------------");
           console.log( this.currentAuthentified);
-          console.log("--------------------------------------------------------");
           this.emit();
 
         }
         else{
 
           this.currentAuthentified = null;
-          console.log("---------- Authentification service _else_ : ----------");
           console.log( this.currentAuthentified);
-          console.log("------------------------------------------------------");
           this.emit();
 
         }
-      console.log("---------- Authentification after if-Else   : ----------");
-        console.log( this.currentAuthentified);
-      console.log("----------------------------------------------------------");
 
       }
     );
+
+  }
+
+
+  desauthentification(){
+
+    this.currentAuthentified = null;
+    this.emit();
 
   }
 

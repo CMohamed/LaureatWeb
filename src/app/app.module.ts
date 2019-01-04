@@ -73,8 +73,8 @@ import { StatistiqueLaureatComponent } from './statistique-laureat/statistique-l
 
 
 const appRoutes: Routes = [
-  {path: 'about', component: AboutComponent},
   {path: 'accueil', component: AccueilComponent},
+  {path: 'about', component: AboutComponent},
   {path: 'laureat-detailles', component: LaureatDetaillesComponent},
   {path: 'laureats', component: LaureatsComponent},
 //  {path: 'new-laureat', component: NewLaureatComponent},
@@ -86,7 +86,7 @@ const appRoutes: Routes = [
   { path: 'base64tourl/:base64', component: PhotoComponent },
   {
     path: '',
-    redirectTo: '/about',
+    redirectTo: '/accueil',
     pathMatch: 'full'
   }
 ];

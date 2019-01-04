@@ -28,6 +28,7 @@ export class AppComponent {
   constructor(public authentificationServices:AuthentificationServices, public router:Router) {
 
 
+    console.log(this.currentUser);
     this.router.events.subscribe((event: Event) => {
 
 
@@ -62,17 +63,22 @@ export class AppComponent {
     this.currentUserSubscription = this.authentificationServices.currentAuthentified$.subscribe(data => {
 
       this.currentUser = data;
+      console.log(this.currentUser);
+
 
 
     });
 
 
 
-
-
-
   }
 
+  public logout()
+  {
+
+    this.authentificationServices.desauthentification();
+
+  }
 
 
 
