@@ -170,7 +170,7 @@ export class StatistiqueLaureatComponent implements OnInit {
         animationEnabled: true,
         exportEnabled: true,
         title:{
-          text: "Nombre d'inscrit par filière",
+          text: "Nombre d'inscrit par secteur",
           fontSize: 30,
           fontFamily: "arial"
         },
@@ -226,7 +226,7 @@ export class StatistiqueLaureatComponent implements OnInit {
           animationEnabled: true,
           exportEnabled: true,
           title:{
-            text: "Classement des organismes par nombre d'inscrit",
+            text: "Nombre d'inscrits par      organisme",
             fontSize: 30,
             fontFamily: "arial"
           },
@@ -293,7 +293,7 @@ export class StatistiqueLaureatComponent implements OnInit {
         animationEnabled: true,
         exportEnabled: true,
         title: {
-          text: "Nombre d'inscriptions par promotions",
+          text: "Nombre d'inscriptions par année",
           fontSize: 30,
           fontFamily: "arial"
         },
