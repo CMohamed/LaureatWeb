@@ -9,7 +9,8 @@
 
   <mat-card-content>
     <p>
-      Etat avancement : {{hist.etat}}
+      Etat avancement :<!-- {{hist.etat}}-->
+      <span [ngClass]="{'ac':hist.etat=='accepté','wa':hist.etat!='accepté'}"> {{hist.etat}} </span>
 
     </p>
 

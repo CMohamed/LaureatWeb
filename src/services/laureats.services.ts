@@ -92,7 +92,7 @@ export class LaureatsServices {
 
         let nombreEnregistrement = Number((data1 as any).features[0].count);
 
-        console.log(nombreEnregistrement);
+        //console.log(nombreEnregistrement);
 
         this.laureatsList = [];
 

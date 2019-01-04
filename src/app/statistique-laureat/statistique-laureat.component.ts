@@ -8,6 +8,7 @@ import {HttpClient} from '@angular/common/http';
   templateUrl: './statistique-laureat.component.html',
   styleUrls: ['./statistique-laureat.component.css']
 })
+
 export class StatistiqueLaureatComponent implements OnInit {
 
   public nombreDInscrit : number;
@@ -32,12 +33,9 @@ export class StatistiqueLaureatComponent implements OnInit {
         "where%20utilisateur.id%20=%20avancement.refutilisateur%20" +
         "and%20etat%20=%20'accept%C3%A9'").subscribe( data => {
 
-
         this.moyenneParMois = parseFloat((Number((data as any).features[0].nombreinscription) / (Number((data as any).features[0].dureesite)/12)).toString());
         console.log(this.moyenneParMois);
       });
-
-
 
       this.httpClient.get("http://localhost:9090/requestAny/select%20count(*)%20as%20nombreorganisme%20" +
         "from%20organisme").subscribe( data => {
@@ -51,9 +49,7 @@ export class StatistiqueLaureatComponent implements OnInit {
 
   ngOnInit() {
 
-
     let chart;
-
 
     this.httpClient.get("http://localhost:9090/requestAny/" +
       "select%20count(*)%20as%20y,%20genre%20as%20label%20" +
@@ -86,8 +82,6 @@ export class StatistiqueLaureatComponent implements OnInit {
       });
 
       chart.render();
-
-
 
     },err => {});
 
@@ -232,15 +226,7 @@ export class StatistiqueLaureatComponent implements OnInit {
         chart.render();
 
 
-
-
-
       });
-
-
-
-
-
 
     },err => {});
 
@@ -272,7 +258,7 @@ export class StatistiqueLaureatComponent implements OnInit {
         animationEnabled: true,
         exportEnabled: true,
         title: {
-          text: "Nombre d'inscript par mois"
+          text: "Nombre d'inscriptions par promotions"
         },
         subtitles:[{
           text: "Zoomez pour plus de détail"
@@ -302,20 +288,11 @@ export class StatistiqueLaureatComponent implements OnInit {
           }]
       });
 
-
-
-
-
       chart.render();
-
-
 
     }, err => {
 
     });
-
-
-
 
   }
 

@@ -15,6 +15,7 @@ export class EditLaureatComponent implements OnInit {
 
   public etat : any;
   public motif : any;
+  public idmax = 21;
 
 
 
@@ -41,13 +42,14 @@ export class EditLaureatComponent implements OnInit {
   modifierAvancement() {
 
     console.log(this.dernierAvancement);
+    this.idmax++;
 
     this.httpClient.get("http://localhost:9090/requestAny/" +
       "INSERT%20INTO%20" +
       "avancement%20" +
-      "(datetraitement,%20motif,%20refutilisateur,%20etat)%20" +
+      "(id,%20datetraitement,%20motif,%20refutilisateur,%20etat)%20" +
       "VALUES%20" +
-      "('" + formatDate(new Date(), 'yyyy-MM-dd', 'en').toString() + "','" + this.motif + "',%20" + this.dernierAvancement.refutilisateur +  ",%20'"+ this.etat +"')").subscribe( data => {
+      "("+this.idmax+",'" + formatDate(new Date(), 'yyyy-MM-dd', 'en').toString() + "','" + this.motif + "',%20" + this.dernierAvancement.refutilisateur +  ",%20'"+ this.etat +"')").subscribe( data => {
 
     }, err => {
       console.log("une erreur a été survenue : ce qui normale dans une requete insert")
