@@ -25,7 +25,7 @@ export class AccueilComponent implements OnInit {
 
 
   //url : string = "assets/accueilEhpt.html";
-  url : string = "http://192.168.43.56:8080/";
+  url : string = "http://127.0.0.1:8080/webehtp/www.ehtp.ac.ma/index.html";
 
   constructor() { }
 

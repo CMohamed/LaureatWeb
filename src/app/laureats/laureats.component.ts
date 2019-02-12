@@ -46,7 +46,7 @@ export class LaureatsComponent implements OnInit {
 
 
 
-  Secteurs = ['prive', 'public'];
+  Secteurs = ['privé', 'public'];
 
   Promotions :Array<number> = new Array<number>();
 
@@ -103,7 +103,7 @@ export class LaureatsComponent implements OnInit {
 
       });
 
-
+    this.organismeService.emitList();
 
     this.organismesListSubscription = this.organismeService.organismeList$.subscribe(
       (organismes) => {
